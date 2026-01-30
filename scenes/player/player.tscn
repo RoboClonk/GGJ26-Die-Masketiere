@@ -9,6 +9,8 @@ height = 20.0
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x7p2l"]
 
 [node name="Player" type="CharacterBody2D" unique_id=2059150865]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_8afob")
 speed = 200.0
 
