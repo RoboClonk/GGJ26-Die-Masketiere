@@ -4,6 +4,7 @@ class_name Collectible
 
 
 func _on_body_entered(body: Node2D) -> void:
+	print(body)
 	if body is Player:
 		collected_by_player(body)
 

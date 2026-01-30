@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c35xqt2nqbecb" path="res://scenes/player/player.tscn" id="1_377w7"]
 
 [node name="Level" type="Node2D" unique_id=1222927860]
+y_sort_enabled = true
 
 [node name="Tilemaps" type="Node2D" parent="." unique_id=873392170]
 position = Vector2(-3, -1)
@@ -11,3 +12,9 @@ position = Vector2(-3, -1)
 position = Vector2(456, 259)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=373292418]
+
+[node name="Collectibles" type="Node2D" parent="." unique_id=752498702]
+y_sort_enabled = true
+
+[node name="Objects" type="Node2D" parent="." unique_id=1880016874]
+y_sort_enabled = true
