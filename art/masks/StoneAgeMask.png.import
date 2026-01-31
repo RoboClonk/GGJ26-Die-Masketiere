@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biht6bsfxtcol"
-path="res://.godot/imported/light_circle.png-b6226395841af3504a482c0330f8fccf.ctex"
+uid="uid://cca4lxmdbw1ab"
+path="res://.godot/imported/StoneAgeMask.png-c5a1cc553548101d3364ccc83ce98cf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/sprites/light_circle.png"
-dest_files=["res://.godot/imported/light_circle.png-b6226395841af3504a482c0330f8fccf.ctex"]
+source_file="res://art/masks/StoneAgeMask.png"
+dest_files=["res://.godot/imported/StoneAgeMask.png-c5a1cc553548101d3364ccc83ce98cf7.ctex"]
 
 [params]
 

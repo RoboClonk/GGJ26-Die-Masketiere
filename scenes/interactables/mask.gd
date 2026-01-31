@@ -4,5 +4,5 @@ extends Interactable
 
 func interact() -> void:
 	super()
-	queue_free()
 	Globals.mask_collected.emit(mask)
+	queue_free()

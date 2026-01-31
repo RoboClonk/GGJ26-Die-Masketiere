@@ -163,7 +163,11 @@ func default_attack():
 		# Attack sprite to hint where the enemy is attacking.
 		var progress = 1.0 - attack_timer.time_left / attack_timer.wait_time
 		attack_sprite.modulate.a = progress * 0.5
-		await get_tree().process_frame
+		# We need to cancel the loop if we are not inside the tree, else we have an infinite loop.
+		if is_inside_tree(): 
+			await get_tree().process_frame
+		else:
+			return
 	
 	attack_sprite.modulate.a = 0.0
 	can_move = true
@@ -209,7 +213,11 @@ func charge_attack(position_arc_degrees = 90.0, position_arc_distance = 80.0, ch
 		if hit_player_in_range():
 			stop_movement_override()
 			break
-		await get_tree().process_frame
+		# We need to cancel the loop if we are not inside the tree, else we have an infinite loop.
+		if is_inside_tree(): 
+			await get_tree().process_frame
+		else:
+			return
 	
 	can_move = false
 	await get_tree().create_timer(1.0).timeout # Cooldown for next attack
