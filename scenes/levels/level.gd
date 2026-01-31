@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Level
+
 @onready var player: Player = $Player
 @onready var enemies: Node2D = $Enemies
 @onready var enemy_spawn_points: Node2D = $EnemySpawnPoints
@@ -57,3 +59,10 @@ func _on_mask_collected(mask_id: int) -> void:
 	
 	# Start regularly spawning enemies.
 	enemy_spawn_timer.start()
+
+
+func transition_to_level(level: String) -> void:
+	call_deferred("_transition_to_level", level)
+	
+func _transition_to_level(level: String) -> void:
+	get_tree().change_scene_to_file(level)

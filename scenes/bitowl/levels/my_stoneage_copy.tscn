@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://5se38u36rh0i"]
 
 [ext_resource type="PackedScene" uid="uid://bviuebiesy802" path="res://scenes/levels/level.tscn" id="1_ef2nq"]
+[ext_resource type="Script" uid="uid://3bn0uoou1l2r" path="res://scenes/bitowl/levels/my_stoneage_copy.gd" id="2_2y6o8"]
 [ext_resource type="TileSet" uid="uid://dnt8uc7y8uc8a" path="res://tilesets/stoneage.tres" id="2_5vkbt"]
 [ext_resource type="Script" uid="uid://d30k2574ci8gx" path="res://scenes/ground_tilemap.gd" id="3_ljss4"]
 [ext_resource type="PackedScene" uid="uid://d22xb1khcbtt2" path="res://scenes/bitowl/my_simple_enemy.tscn" id="4_ef2nq"]
@@ -12,7 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://rg2mybxmh3wx" path="res://scenes/objects/lamp.tscn" id="8_ljss4"]
 [ext_resource type="PackedScene" uid="uid://fxb25wbkuc5c" path="res://scenes/objects/door.tscn" id="11_3pfpa"]
 
-[node name="StoneageLevel" unique_id=1222927860 node_paths=PackedStringArray("enemy_waves") instance=ExtResource("1_ef2nq")]
+[node name="StoneAgeLevel" unique_id=1222927860 node_paths=PackedStringArray("enemy_waves") instance=ExtResource("1_ef2nq")]
+script = ExtResource("2_2y6o8")
 level_id = 0
 enemy_scenes = Array[PackedScene]([ExtResource("4_ef2nq")])
 enemy_waves = [NodePath("Enemies/Wave0"), NodePath("Enemies/Wave1")]
@@ -146,6 +148,12 @@ position = Vector2(87, 130)
 [node name="Door2" parent="." index="12" unique_id=1237561081 instance=ExtResource("11_3pfpa")]
 position = Vector2(50, 131)
 state = 1
+
+[node name="ExitDoor" parent="." index="13" unique_id=149252779 instance=ExtResource("11_3pfpa")]
+position = Vector2(-74, 32)
+state = 0
+
+[connection signal="player_entered_door" from="ExitDoor" to="." method="_on_exit_doot_player_entered_door"]
 
 [editable path="Player"]
 [editable path="Mask0"]

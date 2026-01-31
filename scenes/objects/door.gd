@@ -1,6 +1,7 @@
 @tool
-
 extends Node2D
+
+class_name Door
 
 signal player_entered_door()
 

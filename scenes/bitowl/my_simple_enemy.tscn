@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d22xb1khcbtt2"]
 
-[ext_resource type="PackedScene" path="res://scenes/enemies/enemy_base.tscn" id="1_6lvay"]
+[ext_resource type="PackedScene" uid="uid://dtu7noaxo562u" path="res://scenes/enemies/enemy_base.tscn" id="1_6lvay"]
 [ext_resource type="Shader" uid="uid://cd0q8jdhx5vpx" path="res://shaders/flash.gdshader" id="2_oc3tg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnu2o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6lvay"]
 resource_local_to_scene = true
 shader = ExtResource("2_oc3tg")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -12,4 +12,4 @@ shader_parameter/flash = 0.0
 [node name="SimpleEnemy" unique_id=616659278 instance=ExtResource("1_6lvay")]
 
 [node name="EnemyPlaceholder" parent="." index="0" unique_id=864650589]
-material = SubResource("ShaderMaterial_pnu2o")
+material = SubResource("ShaderMaterial_6lvay")
