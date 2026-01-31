@@ -27,7 +27,6 @@ func show_text(text: String) -> void:
 func _process(_delta: float) -> void:
 	if label.visible_ratio >= 1 and is_quittable:
 		if Input.is_action_just_pressed("Attack") or Input.is_action_just_pressed("Pause"):
-			print("Done")
 			get_tree().paused = false
 			hide()
 			dialog_closed.emit()
