@@ -100,12 +100,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-metadata/_edit_lock_ = true
 
 [node name="Title" type="Label" parent="VBoxContainer" unique_id=1451418568]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 38
 text = "Masquerade at the Museum"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -117,8 +116,99 @@ theme_override_styles/separator = SubResource("StyleBoxLine_kvqlu")
 
 [node name="MarginBox" type="MarginContainer" parent="VBoxContainer" unique_id=711546390]
 layout_mode = 2
-size_flags_vertical = 0
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 0
 metadata/_edit_use_anchors_ = true
+
+[node name="SettingsMenu" type="VBoxContainer" parent="VBoxContainer/MarginBox" unique_id=1004986682]
+custom_minimum_size = Vector2(240, 120)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SubTitle" type="Label" parent="VBoxContainer/MarginBox/SettingsMenu" unique_id=58472076]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginBox/SettingsMenu" unique_id=662827373]
+layout_mode = 2
+
+[node name="Sound" type="Control" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer" unique_id=1456958273]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound" unique_id=1012812143]
+layout_mode = 0
+offset_left = -123.0
+offset_top = 5.0
+offset_right = 37.0
+offset_bottom = 155.0
+
+[node name="LabelSound" type="Label" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer" unique_id=1407929585]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Sound"
+horizontal_alignment = 1
+
+[node name="LabelMaster" type="Label" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer" unique_id=135990194]
+layout_mode = 2
+text = "Master"
+
+[node name="VolumeMaster" type="HSlider" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer" unique_id=1817484226]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="LabelEffects" type="Label" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer" unique_id=136222947]
+layout_mode = 2
+text = "Effects"
+
+[node name="VolumeEffects" type="HSlider" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer" unique_id=1236883210]
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.05
+
+[node name="LabelBackground2" type="Label" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer" unique_id=228902908]
+layout_mode = 2
+text = "Background"
+
+[node name="VolumeBackground2" type="HSlider" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer" unique_id=1406723896]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="Graphics" type="Control" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer" unique_id=1197882298]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Graphics" unique_id=539117705]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 14.0
+offset_right = 429.0
+offset_bottom = 58.0
+
+[node name="GraphicsLabel" type="Label" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Graphics/VBoxContainer" unique_id=224464200]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Graphics"
+
+[node name="Fullscreen" type="HBoxContainer" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Graphics/VBoxContainer" unique_id=914688523]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Graphics/VBoxContainer/Fullscreen" unique_id=1170832217]
+layout_mode = 2
+text = "Fullscreen"
+
+[node name="Fullscreen" type="CheckButton" parent="VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Graphics/VBoxContainer/Fullscreen" unique_id=1468982291]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginBox/SettingsMenu" unique_id=181452792]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Back"
 
 [node name="MainMenu" type="VBoxContainer" parent="VBoxContainer/MarginBox" unique_id=1889879933]
 custom_minimum_size = Vector2(250, 0)
@@ -141,23 +231,7 @@ layout_mode = 2
 size_flags_horizontal = 5
 text = "Quit"
 
-[node name="SettingsMenu" type="VBoxContainer" parent="VBoxContainer" unique_id=1004986682]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 2
-alignment = 1
-
-[node name="SubTitle" type="Label" parent="VBoxContainer/SettingsMenu" unique_id=58472076]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Settings"
-horizontal_alignment = 1
-
-[node name="Back" type="Button" parent="VBoxContainer/SettingsMenu" unique_id=516834288]
-layout_mode = 2
-text = "Back"
-
+[connection signal="pressed" from="VBoxContainer/MarginBox/SettingsMenu/Button" to="." method="_on_settings_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginBox/MainMenu/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginBox/MainMenu/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginBox/MainMenu/Quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="VBoxContainer/SettingsMenu/Back" to="." method="_on_settings_back_pressed"]

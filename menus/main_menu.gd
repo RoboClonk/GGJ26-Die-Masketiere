@@ -1,7 +1,7 @@
 extends Control
 
 @onready var main_menu: VBoxContainer = $VBoxContainer/MarginBox/MainMenu
-@onready var settings_menu: VBoxContainer = $VBoxContainer/SettingsMenu
+@onready var settings_menu: VBoxContainer = $VBoxContainer/MarginBox/SettingsMenu
 
 
 # Called when the node enters the scene tree for the first time.
