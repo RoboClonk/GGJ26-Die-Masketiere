@@ -412,25 +412,35 @@ position = Vector2(134, 91)
 [node name="SimpleEnemy" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=616659278 instance=ExtResource("3_efktg")]
 position = Vector2(14, 87)
 
-[node name="Collectiblesx" type="Node2D" parent="." index="3" unique_id=1042568706]
-y_sort_enabled = true
+[node name="SimpleEnemy2" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="1" unique_id=457836799 instance=ExtResource("3_efktg")]
+position = Vector2(-44, -2)
 
-[node name="Mask" parent="Collectiblesx" index="0" unique_id=1604206455 instance=ExtResource("3_jq4o1")]
+[node name="SimpleEnemy3" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="2" unique_id=43301611 instance=ExtResource("3_efktg")]
+position = Vector2(-9, -87)
+
+[node name="SimpleEnemy4" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="3" unique_id=1716151311 instance=ExtResource("3_efktg")]
+position = Vector2(17, -88)
+
+[node name="SimpleEnemy5" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="4" unique_id=340489196 instance=ExtResource("3_efktg")]
+position = Vector2(56, -89)
+
+[node name="Mask" parent="Collectibles" parent_id_path=PackedInt32Array(752498702) index="0" unique_id=1604206455 instance=ExtResource("3_jq4o1")]
 position = Vector2(48, 24)
 
-[node name="Coin" parent="Collectiblesx" index="1" unique_id=1480856903 instance=ExtResource("3_mhkdx")]
+[node name="Coin" parent="Collectibles" parent_id_path=PackedInt32Array(752498702) index="1" unique_id=1480856903 instance=ExtResource("3_mhkdx")]
 position = Vector2(226, 21)
 
-[node name="Coin2" parent="Collectiblesx" index="2" unique_id=893815303 instance=ExtResource("3_mhkdx")]
+[node name="Coin2" parent="Collectibles" parent_id_path=PackedInt32Array(752498702) index="2" unique_id=893815303 instance=ExtResource("3_mhkdx")]
 position = Vector2(197, 20)
 
-[node name="Coin3" parent="Collectiblesx" index="3" unique_id=326001588 instance=ExtResource("3_mhkdx")]
+[node name="Coin3" parent="Collectibles" parent_id_path=PackedInt32Array(752498702) index="3" unique_id=326001588 instance=ExtResource("3_mhkdx")]
 position = Vector2(171, 20)
 
-[node name="TreeLarge" parent="Collectiblesx" index="4" unique_id=1354745062 instance=ExtResource("5_popwy")]
+[node name="TreeLarge" parent="Collectibles" parent_id_path=PackedInt32Array(752498702) index="4" unique_id=1354745062 instance=ExtResource("5_popwy")]
 position = Vector2(89, 22)
 
-[node name="TreeSmall" parent="Collectiblesx" index="5" unique_id=1134106608 instance=ExtResource("6_efktg")]
+[node name="TreeSmall" parent="Collectibles" parent_id_path=PackedInt32Array(752498702) index="5" unique_id=1134106608 instance=ExtResource("6_efktg")]
 position = Vector2(59, 16)
 
-[node name="Stoneage Theme" parent="." index="6" unique_id=1100986812 instance=ExtResource("8_w02ck")]
+[node name="Stoneage Theme" parent="." index="5" unique_id=1100986812 instance=ExtResource("8_w02ck")]
+bus = &"Master"

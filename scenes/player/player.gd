@@ -3,9 +3,12 @@ extends CharacterBody2D
 class_name Player
 
 @export var speed: float = 20
+@export var damage: float = 1
 
 @export var legs: AnimatedSprite2D
 @export var body: AnimatedSprite2D
+
+@onready var attack_area: Area2D = $AttackArea
 
 var is_attacking = false;
 
@@ -19,7 +22,8 @@ func _process(delta: float) -> void:
 	if abs(velocity.x) > 0:
 		legs.flip_h = velocity.x < 0
 		body.flip_h = velocity.x < 0
-
+		attack_area.scale.x = -1 if velocity.x < 0 else 1
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Attack") and !is_attacking:
@@ -31,9 +35,12 @@ func trigger_attack():
 	body.play("Attack")
 	await get_tree().create_timer(0.2).timeout
 	
-	#TODO Hit Check and Damage
+	# Activate attack area to trigger damage on all enemies that are inside.
+	# @see _on_attack_area_body_entered
+	attack_area.monitoring = true
 	
 	await get_tree().create_timer(0.2).timeout
+	attack_area.monitoring = false
 	is_attacking = false
 
 
@@ -45,3 +52,8 @@ func _physics_process(_delta: float) -> void:
 	var input_vector = Input.get_vector("left", "right", "up", "down")
 	velocity = input_vector * speed
 	move_and_slide()
+
+
+func _on_attack_area_body_entered(physics_body: Node2D) -> void:
+	if "take_damage" in physics_body:
+		physics_body.take_damage(damage)
