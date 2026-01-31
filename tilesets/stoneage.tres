@@ -2,6 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://b7hejkrsjs8r3" path="res://art/tilemaps/Stoneage.png" id="1_kw0mo"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kw0mo"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0ue1"]
 texture = ExtResource("1_kw0mo")
 0:0/0 = 0
@@ -310,9 +316,11 @@ texture = ExtResource("1_kw0mo")
 4:6/0 = 0
 4:6/0/terrain_set = 0
 4:6/0/terrain = 0
+4:6/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kw0mo")
 5:6/0 = 0
 5:6/0/terrain_set = 0
 5:6/0/terrain = 0
+5:6/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kw0mo")
 8:6/0 = 0
 8:6/0/terrain_set = 0
 8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, 4, 4, 8)
@@ -345,9 +353,11 @@ texture = ExtResource("1_kw0mo")
 4:7/0 = 0
 4:7/0/terrain_set = 0
 4:7/0/terrain = 0
+4:7/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kw0mo")
 5:7/0 = 0
 5:7/0/terrain_set = 0
 5:7/0/terrain = 0
+5:7/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kw0mo")
 7:7/0 = 0
 7:7/0/terrain_set = 0
 7:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 4, 8, 8, 4)
@@ -457,6 +467,18 @@ texture = ExtResource("1_kw0mo")
 9:9/0 = 0
 9:9/0/terrain_set = 0
 9:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -8, -4, -4, -8)
+4:8/0 = 0
+4:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kw0mo")
+5:8/0 = 0
+5:8/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kw0mo")
+4:10/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+5:10/0 = 0
+7:10/0 = 0
+7:11/0 = 0
+8:11/0 = 0
+8:10/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1
@@ -468,4 +490,5 @@ terrain_set_0/terrain_1/color = Color(0.7295449, 0.015725568, 0.6929604, 1)
 terrain_set_1/mode = 0
 terrain_set_1/terrain_0/name = "Wall Small"
 terrain_set_1/terrain_0/color = Color(0.28828666, 0.4396528, 1.92523e-07, 1)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_o0ue1")

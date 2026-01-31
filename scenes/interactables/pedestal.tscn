@@ -11,6 +11,7 @@ size = Vector2(16, 12)
 radius = 27.0
 
 [node name="Pedestal" unique_id=75471443 instance=ExtResource("1_eyjd8")]
+collision_layer = 8
 script = ExtResource("2_fros2")
 pedestal_item_frame = 33
 
@@ -35,3 +36,6 @@ texture = ExtResource("2_6ugek")
 hframes = 28
 vframes = 15
 frame = 33
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="." index="5" unique_id=28464310]
+vertices = PackedVector2Array(-12, -17, -12, 2, 11, 2, 11, -17)
