@@ -9,9 +9,14 @@ extends Interactable
 @export_range(0, 4) var pedestal_item_frame: int = 0:
 	set(value):
 		pedestal_item_frame = value
-		if pedestal_item:
-			pedestal_item.frame = value + 37
 
+
+func _ready() -> void:
+	_update_sprite()
+	
+func _update_sprite() -> void:
+		if pedestal_item:
+			pedestal_item.frame = pedestal_item_frame + 37
 
 func interact() -> void:
 	super()

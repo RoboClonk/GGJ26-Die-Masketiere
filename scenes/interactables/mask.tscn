@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c20v8dl35dy43" path="res://scenes/interactables/interactable.tscn" id="1_k58pe"]
 [ext_resource type="Script" uid="uid://caj56drpk45is" path="res://scenes/interactables/mask.gd" id="2_d44su"]
 [ext_resource type="Texture2D" uid="uid://cahv7fyadmkk" path="res://art/masks/AntiqueLeft.png" id="2_u3662"]
+[ext_resource type="PackedScene" uid="uid://kjfgp0vorixy" path="res://scenes/text_dialog.tscn" id="4_d44su"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d44su"]
 radius = 5.0
@@ -10,6 +11,7 @@ radius = 5.0
 [node name="Mask" unique_id=75471443 instance=ExtResource("1_k58pe")]
 script = ExtResource("2_d44su")
 mask = 0
+interaction_text = ""
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=520145219]
 shape = SubResource("CircleShape2D_d44su")
@@ -17,3 +19,5 @@ shape = SubResource("CircleShape2D_d44su")
 [node name="AntiqueLeft" type="Sprite2D" parent="." index="3" unique_id=810192070]
 position = Vector2(5, 16)
 texture = ExtResource("2_u3662")
+
+[node name="TextDialog" parent="." index="4" unique_id=587914214 instance=ExtResource("4_d44su")]
