@@ -3,6 +3,9 @@
 [ext_resource type="Script" uid="uid://3hoapbv7n53b" path="res://scenes/interactables/interactable.gd" id="1_u3mly"]
 [ext_resource type="FontFile" uid="uid://d263q0lpohl03" path="res://assets/font/PressStart2P-Regular.ttf" id="2_ikuv3"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikuv3"]
+radius = 20.0
+
 [node name="Interactable" type="StaticBody2D" unique_id=75471443]
 script = ExtResource("1_u3mly")
 
@@ -13,6 +16,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1887153074]
+shape = SubResource("CircleShape2D_ikuv3")
 
 [node name="InteractHint" type="PanelContainer" parent="." unique_id=413300057]
 visible = false

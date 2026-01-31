@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://duc0f1iyioujj"]
+
+[ext_resource type="PackedScene" uid="uid://c20v8dl35dy43" path="res://scenes/interactables/interactable.tscn" id="1_k58pe"]
+[ext_resource type="Script" uid="uid://caj56drpk45is" path="res://scenes/interactables/mask.gd" id="2_d44su"]
+[ext_resource type="Texture2D" uid="uid://cahv7fyadmkk" path="res://art/masks/AntiqueLeft.png" id="2_u3662"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d44su"]
+radius = 5.0
+
+[node name="Mask" unique_id=75471443 instance=ExtResource("1_k58pe")]
+script = ExtResource("2_d44su")
+level = 0
+mask = 0
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=520145219]
+shape = SubResource("CircleShape2D_d44su")
+
+[node name="AntiqueLeft" type="Sprite2D" parent="." index="3" unique_id=810192070]
+position = Vector2(5, 16)
+texture = ExtResource("2_u3662")

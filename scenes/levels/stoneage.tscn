@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://d30k2574ci8gx" path="res://scenes/ground_tilemap.gd" id="3_stvde"]
 [ext_resource type="PackedScene" uid="uid://bgq18ctougppm" path="res://scenes/interactables/pedestal.tscn" id="4_3t1mm"]
 [ext_resource type="PackedScene" uid="uid://cn3unuf7v6gjw" path="res://scenes/interactables/pedestal_tall.tscn" id="5_stvde"]
+[ext_resource type="PackedScene" uid="uid://duc0f1iyioujj" path="res://scenes/interactables/mask.tscn" id="7_qe77c"]
+[ext_resource type="Texture2D" uid="uid://boej8ib2ewd6t" path="res://art/masks/AntiqueRight.png" id="8_epymk"]
 
 [node name="StoneageLevel" unique_id=1222927860 instance=ExtResource("1_cwsmi")]
 
@@ -33,3 +35,15 @@ pedestal_item_frame = 37
 
 [node name="Pedestal2" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="1" unique_id=1529930657 instance=ExtResource("5_stvde")]
 position = Vector2(105, 70)
+
+[node name="Mask" parent="." index="5" unique_id=1357724540 instance=ExtResource("7_qe77c")]
+position = Vector2(-61, 183)
+
+[node name="Mask2" parent="." index="6" unique_id=752609315 instance=ExtResource("7_qe77c")]
+position = Vector2(5, 182)
+
+[node name="AntiqueLeft" parent="Mask2" index="3" unique_id=810192070]
+position = Vector2(-4, 20)
+texture = ExtResource("8_epymk")
+
+[editable path="Mask2"]
