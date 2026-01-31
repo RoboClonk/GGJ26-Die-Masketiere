@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="GGJ26-DieMasketiere"
 
+[gui]
+
+theme/custom_font="uid://d263q0lpohl03"
+
 [input]
 
 left={
