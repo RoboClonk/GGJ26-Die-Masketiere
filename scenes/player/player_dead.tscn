@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b2t4nscqkub6l"]
+
+[ext_resource type="Shader" uid="uid://cd0q8jdhx5vpx" path="res://shaders/flash.gdshader" id="2_4brto"]
+[ext_resource type="SpriteFrames" uid="uid://b3esrjopmp6pt" path="res://art/entities/Legs.tres" id="3_jlvmp"]
+[ext_resource type="SpriteFrames" uid="uid://kpftjh6ywxev" path="res://art/entities/Body.tres" id="4_0bc2g"]
+[ext_resource type="Script" path="res://scenes/animated_sprite_flash.gd" id="5_ubb5y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75vfm"]
+shader = ExtResource("2_4brto")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash = 0.0
+
+[node name="Player" type="Node2D" unique_id=1193917726]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1551943026]
+zoom = Vector2(4, 4)
+
+[node name="PlayerLegs" type="AnimatedSprite2D" parent="." unique_id=1129114372]
+material = SubResource("ShaderMaterial_75vfm")
+sprite_frames = ExtResource("3_jlvmp")
+animation = &"Death"
+autoplay = "Death"
+offset = Vector2(0, -16)
+
+[node name="PlayerBody" type="AnimatedSprite2D" parent="." unique_id=1992899017]
+material = SubResource("ShaderMaterial_75vfm")
+sprite_frames = ExtResource("4_0bc2g")
+animation = &"Death"
+autoplay = "Death"
+offset = Vector2(0, -16)
+script = ExtResource("5_ubb5y")
+
+[connection signal="animation_finished" from="PlayerBody" to="." method="_on_player_body_animation_finished"]

@@ -7,6 +7,9 @@ class_name Player
 
 @export var legs: AnimatedSprite2D
 @export var body: AnimatedSprite2D
+@export var attack_effect: Sprite2D
+
+@export var death_scene : PackedScene
 
 
 @onready var attack_area: Area2D = $AttackArea
@@ -15,6 +18,11 @@ class_name Player
 @export var audio_player: AudioStreamPlayer2D
 var is_attacking: bool = false
 var is_dead: bool = false
+
+
+func _ready() -> void:
+	attack_effect.visible = false
+
 
 func _process(_delta: float) -> void:
 	if is_dead:
@@ -27,6 +35,7 @@ func _process(_delta: float) -> void:
 	if abs(velocity.x) > 0:
 		legs.flip_h = velocity.x < 0
 		body.flip_h = velocity.x < 0
+		attack_effect.flip_h = velocity.x < 0
 		attack_area.scale.x = -1 if velocity.x < 0 else 1
 	
 
@@ -49,6 +58,7 @@ func trigger_attack():
 	await get_tree().create_timer(0.2).timeout
 	attack_area.monitoring = false
 	is_attacking = false
+	attack_effect.visible = false
 
 
 func _on_player_body_animation_finished() -> void:
@@ -67,10 +77,10 @@ func _physics_process(_delta: float) -> void:
 		audio_player.stop()
 
 
-
 func _on_attack_area_body_entered(physics_body: Node2D) -> void:
 	if "take_damage" in physics_body:
 		physics_body.take_damage(damage)
+		attack_effect.visible = true
 		
 
 func take_damage(incoming_damage: float) -> void:
@@ -78,6 +88,8 @@ func take_damage(incoming_damage: float) -> void:
 		Globals.player_health -= incoming_damage
 		if Globals.player_health <= 0:
 			die()
+		else:
+			body.play("Hit")
 		# Legs use same material as body, so we only need to set the shader parameters to flash on one.
 		body.flash(0.1, 0.2)
 		invincibility_timer.start()
@@ -85,5 +97,13 @@ func take_damage(incoming_damage: float) -> void:
 
 func die() -> void:
 	is_dead = true
-	# TODO Probably just show a dead sprite instead and disable all interactability.
+	var death = death_scene.instantiate()
+	get_tree().root.add_child(death)
+	for node in death.get_children():
+		if node is AnimatedSprite2D:
+			node.flip_h = body.flip_h
+		elif node is Camera2D:
+			node.make_current()
+			
+	death.position = position
 	queue_free()

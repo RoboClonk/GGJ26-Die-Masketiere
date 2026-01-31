@@ -1,10 +1,12 @@
 [gd_scene format=4 uid="uid://c35xqt2nqbecb"]
 
 [ext_resource type="Script" uid="uid://bi3md3unr3sa8" path="res://scenes/player/player.gd" id="1_8afob"]
+[ext_resource type="PackedScene" uid="uid://b2t4nscqkub6l" path="res://scenes/player/player_dead.tscn" id="2_0owmy"]
 [ext_resource type="SpriteFrames" uid="uid://b3esrjopmp6pt" path="res://art/entities/Legs.tres" id="2_gmlin"]
 [ext_resource type="SpriteFrames" uid="uid://kpftjh6ywxev" path="res://art/entities/Body.tres" id="3_lvxji"]
 [ext_resource type="Shader" uid="uid://cd0q8jdhx5vpx" path="res://shaders/flash.gdshader" id="3_p47bc"]
-[ext_resource type="Script" uid="uid://dsyyefxytmf6d" path="res://scenes/animated_sprite_flash.gd" id="5_p47bc"]
+[ext_resource type="Script" path="res://scenes/animated_sprite_flash.gd" id="5_p47bc"]
+[ext_resource type="Texture2D" uid="uid://c7sh05vbygiia" path="res://art/entities/PlayerAttackEffect.png" id="6_75vfm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7p2l"]
 radius = 3.0
@@ -27,13 +29,15 @@ loop_mode = 1
 loop_end = 144207
 stereo = true
 
-[node name="Player" type="CharacterBody2D" unique_id=2059150865 node_paths=PackedStringArray("legs", "body", "audio_player")]
+[node name="Player" type="CharacterBody2D" unique_id=2059150865 node_paths=PackedStringArray("legs", "body", "attack_effect", "audio_player")]
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_8afob")
 speed = 200.0
 legs = NodePath("PlayerLegs")
 body = NodePath("PlayerBody")
+attack_effect = NodePath("PlayerAttackEffect")
+death_scene = ExtResource("2_0owmy")
 audio_player = NodePath("RunningOnConcrete")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297313665]
@@ -52,8 +56,9 @@ zoom = Vector2(4, 4)
 [node name="PlayerLegs" type="AnimatedSprite2D" parent="." unique_id=1129114372]
 material = SubResource("ShaderMaterial_75vfm")
 sprite_frames = ExtResource("2_gmlin")
-animation = &"Idle"
+animation = &"Attack"
 autoplay = "Idle"
+speed_scale = 1.5
 offset = Vector2(0, -16)
 
 [node name="PlayerBody" type="AnimatedSprite2D" parent="." unique_id=1992899017]
@@ -76,10 +81,14 @@ debug_color = Color(0.9804799, 0, 0.3832885, 0.41960785)
 
 [node name="RunningOnConcrete" type="AudioStreamPlayer2D" parent="." unique_id=1037543377]
 stream = SubResource("AudioStreamWAV_p47bc")
-bus = &"SFX"
+
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=1311828866]
 wait_time = 0.5
 one_shot = true
+
+[node name="PlayerAttackEffect" type="Sprite2D" parent="." unique_id=1546744407]
+texture = ExtResource("6_75vfm")
+offset = Vector2(0, -16)
 
 [connection signal="animation_finished" from="PlayerBody" to="." method="_on_player_body_animation_finished"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
