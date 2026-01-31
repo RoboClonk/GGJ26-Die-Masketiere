@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name EnemyBase
 
 @export var speed: float = 50
 var _default_max_speed = 100
