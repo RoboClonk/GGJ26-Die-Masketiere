@@ -5,6 +5,7 @@ static var player : Player
 
 @export var speed: float = 20
 @export var damage: float = 1
+@export var pushback_force: float = 150.0
 
 @export var legs: AnimatedSprite2D
 @export var body: AnimatedSprite2D
@@ -59,6 +60,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func trigger_attack():
+	body.stop()
 	body.play("Attack")
 	Globals.emit_signal("attack_signal", 0.4)
 	await get_tree().create_timer(0.2).timeout
@@ -85,11 +87,12 @@ func _physics_process(_delta: float) -> void:
 
 func _on_attack_area_body_entered(physics_body: Node2D) -> void:
 	if "take_damage" in physics_body:
-		physics_body.take_damage(damage * damage_multiplier)
+		var pushback_velocity = (physics_body.global_position - global_position).normalized() * pushback_force
+		physics_body.take_damage(self, damage * damage_multiplier, pushback_velocity)
 		attack_effect.visible = true
 		
 
-func take_damage(incoming_damage: float) -> void:
+func take_damage(instigator : CharacterBody2D, incoming_damage: float) -> void:
 	if not invincibility_timer.time_left:
 		Globals.player_health -= incoming_damage
 		if Globals.player_health <= 0:
