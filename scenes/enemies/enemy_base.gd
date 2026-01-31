@@ -74,6 +74,9 @@ func _physics_process(_delta: float) -> void:
 			enemy_spritesheet.flip_h = velocity.x < 0
 		
 		move_and_slide()
+		
+	else:
+		velocity = Vector2.ZERO
 
 
 func set_sprite_direction(look_at_location : Vector2):
