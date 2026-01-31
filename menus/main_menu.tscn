@@ -1,52 +1,61 @@
-[gd_scene format=3 uid="uid://bkhc04sgpgdat"]
+[gd_scene format=3 uid="uid://ditt1j1ooojdu"]
 
-[ext_resource type="Script" uid="uid://cnlj73qv25v71" path="res://menus/main_menu.gd" id="1_8gy84"]
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_kvqlu"]
+color = Color(1, 1, 1, 1)
+thickness = 5
 
-[node name="MainMenu" type="ColorRect" unique_id=180101687]
+[node name="Control" type="Control" unique_id=1821274012]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0958072, 0.14709288, 0.2817786, 1)
-script = ExtResource("1_8gy84")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=843045374]
-layout_mode = 0
-offset_left = 120.0
-offset_top = 80.0
-offset_right = 1032.0
-offset_bottom = 568.0
-theme_override_constants/margin_left = 120
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
-theme_override_constants/margin_bottom = 80
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=711546390]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=300518734]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1591340141]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1910445394]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1451418568]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Masquerade at the Museum"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=183632145]
-custom_minimum_size = Vector2(0, 80)
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1936947239]
 layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_kvqlu")
 
-[node name="Button_Start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=925645871]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1889879933]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "Start"
+size_flags_horizontal = 4
+alignment = 1
 
-[node name="Button_Settings" type="Button" parent="MarginContainer/VBoxContainer" unique_id=94547185]
+[node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=883643277]
 layout_mode = 2
+size_flags_horizontal = 5
+text = "Start Game"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=516935539]
+layout_mode = 2
+size_flags_horizontal = 5
 text = "Settings"
 
-[node name="Button_Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=590562993]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=142416477]
 layout_mode = 2
+size_flags_horizontal = 5
 text = "Quit"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_Start" to="." method="_on_button_start_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]
