@@ -42,6 +42,7 @@ death_scene = ExtResource("2_0owmy")
 audio_player = NodePath("RunningOnConcrete")
 
 [node name="Interface" parent="." unique_id=55518087 instance=ExtResource("2_75vfm")]
+z_index = 20
 offset_left = -144.0
 offset_top = -81.0
 offset_right = -144.0
