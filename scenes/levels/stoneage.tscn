@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bviuebiesy802" path="res://scenes/levels/level.tscn" id="1_cwsmi"]
 [ext_resource type="TileSet" uid="uid://dnt8uc7y8uc8a" path="res://tilesets/stoneage.tres" id="2_5w2gp"]
 [ext_resource type="PackedScene" uid="uid://dtu7noaxo562u" path="res://scenes/enemies/simple_enemy.tscn" id="3_3artk"]
+[ext_resource type="PackedScene" uid="uid://bgq18ctougppm" path="res://scenes/interactables/pedestal.tscn" id="4_3t1mm"]
+[ext_resource type="PackedScene" uid="uid://cn3unuf7v6gjw" path="res://scenes/interactables/pedestal_tall.tscn" id="5_stvde"]
 
 [node name="Stoneage" unique_id=1222927860 instance=ExtResource("1_cwsmi")]
 
@@ -20,3 +22,9 @@ position = Vector2(32, 50)
 
 [node name="SimpleEnemy" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=616659278 instance=ExtResource("3_3artk")]
 position = Vector2(140, 98)
+
+[node name="Pedestal" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="0" unique_id=75471443 instance=ExtResource("4_3t1mm")]
+position = Vector2(53, 89)
+
+[node name="Pedestal2" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="1" unique_id=1529930657 instance=ExtResource("5_stvde")]
+position = Vector2(105, 70)
