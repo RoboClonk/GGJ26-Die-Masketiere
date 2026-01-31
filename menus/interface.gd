@@ -7,6 +7,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Globals.attack_signal.connect(_on_attack_signal)
+	Globals.setup_hover(get_tree().get_root())
 	attack_count_down.hide()
 	pause_menu.hide()
 	update_health()

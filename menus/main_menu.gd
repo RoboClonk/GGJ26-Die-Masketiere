@@ -13,6 +13,7 @@ const SETTINGS_PATH = "user://settings.cfg"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Globals.setup_hover(get_tree().get_root())
 	settings_menu.visible = false
 
 	if config.load(SETTINGS_PATH) == OK:
