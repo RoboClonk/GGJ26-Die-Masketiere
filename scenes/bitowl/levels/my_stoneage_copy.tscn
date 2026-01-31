@@ -3,15 +3,16 @@
 [ext_resource type="PackedScene" uid="uid://bviuebiesy802" path="res://scenes/levels/level.tscn" id="1_ef2nq"]
 [ext_resource type="TileSet" uid="uid://dnt8uc7y8uc8a" path="res://tilesets/stoneage.tres" id="2_5vkbt"]
 [ext_resource type="Script" uid="uid://d30k2574ci8gx" path="res://scenes/ground_tilemap.gd" id="3_ljss4"]
-[ext_resource type="PackedScene" uid="uid://dtu7noaxo562u" path="res://scenes/enemies/simple_enemy.tscn" id="4_3pfpa"]
+[ext_resource type="PackedScene" uid="uid://d22xb1khcbtt2" path="res://scenes/bitowl/my_simple_enemy.tscn" id="4_ef2nq"]
 [ext_resource type="PackedScene" uid="uid://bgq18ctougppm" path="res://scenes/interactables/pedestal.tscn" id="5_2y6o8"]
 [ext_resource type="PackedScene" uid="uid://cn3unuf7v6gjw" path="res://scenes/interactables/pedestal_tall.tscn" id="6_2lhn6"]
 [ext_resource type="PackedScene" uid="uid://duc0f1iyioujj" path="res://scenes/interactables/mask.tscn" id="7_yq6ii"]
 [ext_resource type="Texture2D" uid="uid://boej8ib2ewd6t" path="res://art/masks/AntiqueRight.png" id="8_l4dt6"]
 
-[node name="StoneageLevel" unique_id=1222927860 instance=ExtResource("1_ef2nq")]
+[node name="StoneageLevel" unique_id=1222927860 node_paths=PackedStringArray("enemy_waves") instance=ExtResource("1_ef2nq")]
 level_id = 0
-enemy_scenes = Array[PackedScene]([ExtResource("4_3pfpa")])
+enemy_scenes = Array[PackedScene]([ExtResource("4_ef2nq")])
+enemy_waves = [NodePath("Enemies/Wave0"), NodePath("Enemies/Wave1")]
 
 [node name="GroundLayer" type="TileMapLayer" parent="Tilemaps" parent_id_path=PackedInt32Array(873392170) index="0" unique_id=876772918 node_paths=PackedStringArray("wall_tilemap")]
 z_index = -1
@@ -28,8 +29,27 @@ tile_set = ExtResource("2_5vkbt")
 [node name="Player" parent="." index="1" unique_id=2059150865]
 position = Vector2(32, 50)
 
-[node name="SimpleEnemy" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=616659278 instance=ExtResource("4_3pfpa")]
-position = Vector2(140, 98)
+[node name="Wave0" type="Node2D" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=985177452]
+
+[node name="SimpleEnemy2" parent="Enemies/Wave0" index="0" unique_id=616659278 instance=ExtResource("4_ef2nq")]
+position = Vector2(117, 22)
+
+[node name="SimpleEnemy3" parent="Enemies/Wave0" index="1" unique_id=1490627626 instance=ExtResource("4_ef2nq")]
+position = Vector2(61, 23)
+
+[node name="SimpleEnemy4" parent="Enemies/Wave0" index="2" unique_id=216627229 instance=ExtResource("4_ef2nq")]
+position = Vector2(127, 90)
+
+[node name="Wave1" type="Node2D" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="1" unique_id=872338460]
+
+[node name="SimpleEnemy5" parent="Enemies/Wave1" index="0" unique_id=76929814 instance=ExtResource("4_ef2nq")]
+position = Vector2(-112, 121)
+
+[node name="SimpleEnemy6" parent="Enemies/Wave1" index="1" unique_id=1777564046 instance=ExtResource("4_ef2nq")]
+position = Vector2(-51, 132)
+
+[node name="SimpleEnemy7" parent="Enemies/Wave1" index="2" unique_id=414130071 instance=ExtResource("4_ef2nq")]
+position = Vector2(-11, 170)
 
 [node name="Pedestal" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="0" unique_id=75471443 instance=ExtResource("5_2y6o8")]
 position = Vector2(-38, 96)
@@ -38,14 +58,14 @@ pedestal_item_frame = 37
 [node name="Pedestal2" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="1" unique_id=1529930657 instance=ExtResource("6_2lhn6")]
 position = Vector2(105, 70)
 
-[node name="Mask" parent="." index="5" unique_id=1357724540 instance=ExtResource("7_yq6ii")]
+[node name="Mask1" parent="." index="5" unique_id=1357724540 instance=ExtResource("7_yq6ii")]
 position = Vector2(-61, 183)
-
-[node name="Mask2" parent="." index="6" unique_id=752609315 instance=ExtResource("7_yq6ii")]
-position = Vector2(5, 182)
 mask = 1
 
-[node name="AntiqueLeft" parent="Mask2" index="3" unique_id=810192070]
+[node name="Mask0" parent="." index="6" unique_id=752609315 instance=ExtResource("7_yq6ii")]
+position = Vector2(123, 173)
+
+[node name="AntiqueLeft" parent="Mask0" index="3" unique_id=810192070]
 position = Vector2(-4, 20)
 texture = ExtResource("8_l4dt6")
 
@@ -88,4 +108,4 @@ position = Vector2(-84, 148)
 [node name="Marker2D13" type="Marker2D" parent="EnemySpawnPoints" parent_id_path=PackedInt32Array(437125383) index="12" unique_id=150863871]
 position = Vector2(-62, 60)
 
-[editable path="Mask2"]
+[editable path="Mask0"]
