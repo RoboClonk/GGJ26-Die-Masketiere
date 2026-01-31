@@ -9,6 +9,10 @@ script = ExtResource("1_bovvr")
 level_id = null
 enemy_scenes = null
 
+[node name="Darkness" type="CanvasModulate" parent="." unique_id=548543368]
+light_mask = 0
+color = Color(0.26475334, 0.26475334, 0.26475334, 1)
+
 [node name="Tilemaps" type="Node2D" parent="." unique_id=873392170]
 position = Vector2(-3, -1)
 

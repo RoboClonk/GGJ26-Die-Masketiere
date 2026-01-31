@@ -6,9 +6,10 @@
 [ext_resource type="SpriteFrames" uid="uid://b3esrjopmp6pt" path="res://art/entities/Legs.tres" id="2_gmlin"]
 [ext_resource type="SpriteFrames" uid="uid://kpftjh6ywxev" path="res://art/entities/Body.tres" id="3_lvxji"]
 [ext_resource type="Shader" uid="uid://cd0q8jdhx5vpx" path="res://shaders/flash.gdshader" id="3_p47bc"]
-[ext_resource type="Script" path="res://scenes/animated_sprite_flash.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://dsyyefxytmf6d" path="res://scenes/animated_sprite_flash.gd" id="5_p47bc"]
 [ext_resource type="Texture2D" uid="uid://c7sh05vbygiia" path="res://art/entities/PlayerAttackEffect.png" id="6_75vfm"]
 [ext_resource type="AudioStream" uid="uid://sowh21mrf481" path="res://assets/sounds/footstep_randomizer.tres" id="8_5gtgg"]
+[ext_resource type="Texture2D" uid="uid://c733b3h88vgop" path="res://art/sprites/light_stronger.png" id="10_h17s1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7p2l"]
 radius = 3.0
@@ -34,6 +35,7 @@ body = NodePath("PlayerBody")
 attack_effect = NodePath("PlayerAttackEffect")
 death_scene = ExtResource("2_0owmy")
 footstep_sound_player = NodePath("RunningOnConcrete")
+point_light_scale_per_mask_count = Array[float]([0.6, 0.75, 0.9, 1.1])
 
 [node name="Interface" parent="." unique_id=55518087 instance=ExtResource("2_75vfm")]
 z_index = 20
@@ -92,6 +94,10 @@ one_shot = true
 [node name="PlayerAttackEffect" type="Sprite2D" parent="." unique_id=1546744407]
 texture = ExtResource("6_75vfm")
 offset = Vector2(0, -16)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1023919364]
+texture = ExtResource("10_h17s1")
+texture_scale = 0.61
 
 [connection signal="frame_changed" from="PlayerLegs" to="." method="_on_player_legs_frame_changed"]
 [connection signal="animation_finished" from="PlayerBody" to="." method="_on_player_body_animation_finished"]

@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://d22xb1khcbtt2" path="res://scenes/bitowl/my_simple_enemy.tscn" id="4_ef2nq"]
 [ext_resource type="PackedScene" uid="uid://bgq18ctougppm" path="res://scenes/interactables/pedestal.tscn" id="5_2y6o8"]
 [ext_resource type="PackedScene" uid="uid://cn3unuf7v6gjw" path="res://scenes/interactables/pedestal_tall.tscn" id="6_2lhn6"]
-[ext_resource type="Texture2D" uid="uid://c733b3h88vgop" path="res://art/sprites/light_stronger.png" id="6_2y6o8"]
 [ext_resource type="PackedScene" uid="uid://duc0f1iyioujj" path="res://scenes/interactables/mask.tscn" id="7_yq6ii"]
 [ext_resource type="Texture2D" uid="uid://boej8ib2ewd6t" path="res://art/masks/AntiqueRight.png" id="8_l4dt6"]
 [ext_resource type="PackedScene" uid="uid://rg2mybxmh3wx" path="res://scenes/objects/lamp.tscn" id="8_ljss4"]
@@ -24,7 +23,7 @@ stereo = true
 
 [node name="StoneAgeLevel" unique_id=1222927860 node_paths=PackedStringArray("enemy_waves") instance=ExtResource("1_ef2nq")]
 script = ExtResource("2_2y6o8")
-level_id = 0
+level_id = 1
 enemy_scenes = Array[PackedScene]([ExtResource("4_ef2nq")])
 enemy_waves = [NodePath("Enemies/Wave0"), NodePath("Enemies/Wave1")]
 
@@ -35,14 +34,8 @@ position = Vector2(95, 178)
 scale = Vector2(1196.25, 940.74994)
 texture = SubResource("PlaceholderTexture2D_2y6o8")
 
-[node name="Darkness Canvas" type="CanvasModulate" parent="." index="1" unique_id=1640573539]
-light_mask = 0
+[node name="Darkness" parent="." index="1" unique_id=548543368]
 color = Color(0, 0, 0, 1)
-
-[node name="Darkness" type="DirectionalLight2D" parent="." index="2" unique_id=108236784]
-visible = false
-color = Color(0.5609549, 0.5609549, 0.5609549, 1)
-blend_mode = 1
 
 [node name="GroundLayer" type="TileMapLayer" parent="Tilemaps" parent_id_path=PackedInt32Array(873392170) index="0" unique_id=876772918 node_paths=PackedStringArray("wall_tilemap")]
 z_index = -1
@@ -56,7 +49,7 @@ z_index = -1
 tile_map_data = PackedByteArray("AAAKAAEAAAALAAcAAAALAAAAAAANAAYAAAALAAEAAAANAAcAAAALAAIAAAANAAcAAAALAAMAAAANAAcAAAAKAAIAAAALAAcAAAAKAAMAAAALAAcAAAALAAQAAAANAAcAAAALAAUAAAANAAcAAAAKAAQAAAALAAcAAAAKAAUAAAALAAcAAAAKAAYAAAALAAcAAAAKAAcAAAAIAAcAAAALAAYAAAANAAcAAAALAAcAAAANAAcAAAAJAAcAAAAMAAYAAAAIAAcAAAAMAAYAAAAHAAcAAAAMAAYAAAAGAAcAAAALAAYAAAAGAAgAAAALAAgAAAAHAAgAAAAMAAgAAAAIAAgAAAAMAAgAAAAJAAgAAAAMAAgAAAAKAAgAAAAMAAgAAAALAAgAAAANAAgAAAAAAP7/AAAEAAMAAAABAP7/AAAEAAMAAAAAAP//AAAAAAMAAAD///7/AAAEAAMAAAAAAP3/AAAAAAEAAAACAP7/AAAEAAMAAAACAP//AAABAAMAAAABAP//AAABAAMAAAABAP3/AAAEAAMAAAACAP3/AAAHAAAAAAD/////AAAEAAMAAAD///3/AAAEAAMAAAADAP7/AAAEAAMAAAADAP//AAABAAMAAAADAP3/AAAEAAMAAAAEAP7/AAAEAAMAAAAEAP//AAABAAMAAAAEAP3/AAAEAAMAAAAFAP7/AAAEAAMAAAAFAP//AAABAAMAAAAFAP3/AAAEAAMAAAAGAP7/AAAEAAMAAAAGAP//AAABAAMAAAAGAP3/AAAEAAMAAAAHAP7/AAAEAAMAAAAHAP//AAABAAMAAAAHAP3/AAAEAAMAAAAIAP7/AAAEAAMAAAAIAP//AAABAAMAAAAIAP3/AAAEAAMAAAAJAP7/AAAEAAMAAAAJAP//AAABAAMAAAAJAP3/AAAEAAMAAAAKAP7/AAAAAAQAAAAKAP//AAANAAgAAAAKAP3/AAAAAAQAAAAJAPz/AAAEAAMAAAAKAPz/AAAAAAQAAAAGAPz/AAAEAAMAAAAFAPz/AAAEAAMAAAAEAPz/AAAEAAMAAAADAPz/AAAEAAMAAAACAPz/AAAEAAMAAAABAPz/AAAEAAMAAAAAAPz/AAACAAEAAAD///z/AAAEAAMAAAD+//7/AAAEAAMAAAD+//3/AAAEAAMAAAD+//z/AAACAAUAAAAKAAAAAAAIAAYAAAAJAPv/AAABAAUAAAD+//v/AAALAAYAAAD///v/AAABAAUAAAAAAPv/AAABAAUAAAAIAPz/AAAEAAMAAAAIAPv/AAABAAUAAAAKAPv/AAANAAYAAAAHAPz/AAAHAAAAAAAHAPv/AAABAAUAAAAGAPv/AAABAAUAAAAFAPv/AAABAAUAAAAEAPv/AAABAAUAAAADAPv/AAABAAUAAAACAPv/AAABAAUAAAABAPv/AAABAAUAAAD+////AAAEAAMAAAAAAAAAAAAAAAQAAAD//wAAAAAEAAMAAAD+/wAAAAAEAAMAAAD9/wAAAAACAAAAAAD9////AAAEAAMAAAD9//7/AAACAAUAAAD8/wAAAAACAAQAAAD8////AAACAAQAAAD8//7/AAALAAYAAAD9//3/AAACAAQAAAD9//z/AAALAAYAAAD//wEAAAAEAAMAAAD+/wEAAAAEAAMAAAD9/wEAAAAEAAMAAAD//wIAAAABAAMAAAD+/wIAAAABAAMAAAD9/wIAAAABAAMAAAAAAAEAAAAAAAQAAAAAAAIAAAANAAgAAAD8/wIAAAALAAgAAAD8/wEAAAACAAQAAAD6/wMAAAAEAAMAAAD7/wMAAAAAAAQAAAD7/wQAAAAAAAQAAAD6/wQAAAAEAAMAAAD5/wMAAAAEAAMAAAD6/wIAAAAAAAUAAAD5/wQAAAAEAAMAAAD5/wIAAAAEAAMAAAD7/wIAAAANAAYAAAD7/wUAAAAAAAQAAAD6/wUAAAAEAAMAAAD5/wUAAAAEAAMAAAD7/wYAAAAAAAQAAAD6/wYAAAAEAAMAAAD5/wYAAAAEAAMAAAD4/wUAAAAAAAAAAAD4/wYAAAAEAAMAAAD4/wQAAAAEAAMAAAD6/wcAAAABAAMAAAD5/wcAAAAAAAMAAAD7/wcAAAANAAgAAAD3/wUAAAAEAAMAAAD3/wYAAAAEAAMAAAD3/wQAAAAEAAMAAAD4/wcAAAAEAAMAAAD4/wMAAAAEAAMAAAD3/wMAAAAEAAMAAAD2/wUAAAAEAAMAAAD2/wYAAAAEAAMAAAD3/wcAAAAEAAMAAAD2/wQAAAAEAAMAAAD2/wMAAAAEAAMAAAD2/wIAAAADAAAAAAD3/wIAAAAEAAMAAAD4/wIAAAAEAAMAAAD1/wMAAAAEAAMAAAD1/wQAAAAGAAAAAAD1/wIAAAAEAAMAAAD0/wMAAAAEAAMAAAD2/wEAAAAEAAMAAAD3/wEAAAAEAAMAAAD4/wEAAAAEAAMAAAD1/wEAAAAEAAMAAAD0/wQAAAAEAAMAAAD0/wIAAAAEAAMAAAD1/wUAAAAEAAMAAAD0/wUAAAAEAAMAAAD1/wYAAAAAAAEAAAD0/wYAAAAEAAMAAAD1/wcAAAAEAAMAAAD2/wcAAAAEAAMAAAD5/wEAAAAAAAUAAAD6/wEAAAANAAYAAAD3/wAAAAABAAUAAAD4/wAAAAABAAUAAAD5/wAAAAANAAYAAAD2/wAAAAABAAUAAAD1/wAAAAABAAUAAAD0/wEAAAACAAUAAAD0/wAAAAALAAYAAADz/wIAAAAEAAQAAADz/wMAAAACAAQAAADz/wQAAAACAAUAAADz/wUAAAADAAEAAADz/wYAAAACAAMAAAD0/wcAAAAEAAMAAADz/wcAAAAEAAQAAAD1/wgAAAABAAMAAAD0/wgAAAABAAMAAAD2/wgAAAABAAMAAAD3/wgAAAABAAMAAAD4/wgAAAABAAMAAAD5/wgAAAANAAgAAADy/wUAAAAEAAMAAADy/wYAAAABAAMAAADy/wQAAAABAAUAAADx/wUAAAAEAAMAAADx/wYAAAABAAMAAADw/wUAAAAEAAEAAADw/wYAAAABAAMAAADv/wUAAAAEAAMAAADv/wYAAAABAAMAAADu/wUAAAAEAAEAAADu/wYAAAABAAMAAADt/wUAAAAEAAMAAADt/wYAAAABAAMAAADs/wUAAAAEAAQAAADt/wQAAAABAAUAAADu/wQAAAABAAUAAADv/wQAAAABAAUAAADw/wQAAAABAAUAAADx/wQAAAABAAUAAADw/wIAAAAMAAgAAADv/wIAAAAMAAgAAADu/wIAAAAMAAgAAADt/wIAAAAAAAMAAADs/wIAAAACAAMAAADr/wIAAAAMAAgAAADq/wIAAAAHAAgAAADs/wEAAAAMAAYAAADt/wEAAAAMAAYAAADu/wEAAAAMAAYAAADv/wEAAAAMAAYAAADw/wEAAAAMAAYAAADr/wEAAAAMAAYAAADq/wEAAAAHAAcAAADx/wEAAAAKAAcAAADx/wIAAAAKAAgAAADt/wMAAAAAAAQAAADs/wMAAAACAAQAAADv/xIAAAACAAQAAADw/xIAAAAAAAQAAAA=")
 tile_set = ExtResource("2_5vkbt")
 
-[node name="Player" parent="." index="4" unique_id=2059150865]
+[node name="Player" parent="." index="3" unique_id=2059150865]
 position = Vector2(32, 50)
 
 [node name="PlayerLegs" parent="Player" index="4" unique_id=1129114372]
@@ -64,10 +57,6 @@ animation = &"Attack"
 
 [node name="RunningOnConcrete" parent="Player" index="7" unique_id=1037543377]
 stream = SubResource("AudioStreamWAV_p47bc")
-
-[node name="PointLight2D" type="PointLight2D" parent="Player" index="10" unique_id=1434477845]
-texture = ExtResource("6_2y6o8")
-texture_scale = 0.61
 
 [node name="Wave0" type="Node2D" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=985177452]
 
@@ -91,7 +80,22 @@ position = Vector2(-51, 132)
 [node name="SimpleEnemy7" parent="Enemies/Wave1" index="2" unique_id=414130071 instance=ExtResource("4_ef2nq")]
 position = Vector2(-11, 170)
 
-[node name="Pedestal" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="0" unique_id=75471443 instance=ExtResource("5_2y6o8")]
+[node name="Mask1" parent="." index="6" unique_id=1357724540 instance=ExtResource("7_yq6ii")]
+position = Vector2(-61, 183)
+mask = 1
+
+[node name="Mask2" parent="." index="7" unique_id=75471443 instance=ExtResource("7_yq6ii")]
+position = Vector2(24, 174)
+mask = 1
+
+[node name="Mask0" parent="." index="8" unique_id=752609315 instance=ExtResource("7_yq6ii")]
+position = Vector2(123, 173)
+
+[node name="AntiqueLeft" parent="Mask0" index="3" unique_id=810192070]
+position = Vector2(-4, 20)
+texture = ExtResource("8_l4dt6")
+
+[node name="Pedestal" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="0" unique_id=610884856 instance=ExtResource("5_2y6o8")]
 position = Vector2(-38, 96)
 interaction_text = "A very cool pickaxe."
 pedestal_item_frame = 37
@@ -111,17 +115,6 @@ position = Vector2(100, -23)
 
 [node name="lamp4" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="5" unique_id=1161626594 instance=ExtResource("8_ljss4")]
 position = Vector2(130, -22)
-
-[node name="Mask1" parent="." index="8" unique_id=1357724540 instance=ExtResource("7_yq6ii")]
-position = Vector2(-61, 183)
-mask = 1
-
-[node name="Mask0" parent="." index="9" unique_id=752609315 instance=ExtResource("7_yq6ii")]
-position = Vector2(123, 173)
-
-[node name="AntiqueLeft" parent="Mask0" index="3" unique_id=810192070]
-position = Vector2(-4, 20)
-texture = ExtResource("8_l4dt6")
 
 [node name="Marker2D" type="Marker2D" parent="EnemySpawnPoints" parent_id_path=PackedInt32Array(437125383) index="0" unique_id=9496302]
 position = Vector2(35, 10)
@@ -162,14 +155,14 @@ position = Vector2(-84, 148)
 [node name="Marker2D13" type="Marker2D" parent="EnemySpawnPoints" parent_id_path=PackedInt32Array(437125383) index="12" unique_id=150863871]
 position = Vector2(-62, 60)
 
-[node name="Door" parent="." index="12" unique_id=977470783 instance=ExtResource("11_3pfpa")]
+[node name="Door" parent="." index="11" unique_id=977470783 instance=ExtResource("11_3pfpa")]
 position = Vector2(87, 130)
 
-[node name="Door2" parent="." index="13" unique_id=1237561081 instance=ExtResource("11_3pfpa")]
+[node name="Door2" parent="." index="12" unique_id=1237561081 instance=ExtResource("11_3pfpa")]
 position = Vector2(50, 131)
 state = 1
 
-[node name="ExitDoor" parent="." index="14" unique_id=149252779 instance=ExtResource("11_3pfpa")]
+[node name="ExitDoor" parent="." index="13" unique_id=149252779 instance=ExtResource("11_3pfpa")]
 position = Vector2(-74, 32)
 state = 1
 

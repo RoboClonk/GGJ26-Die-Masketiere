@@ -11,12 +11,15 @@ static var player : Player
 @export var attack_effect: Sprite2D
 
 @export var death_scene : PackedScene
+@export var footstep_sound_player : AudioStreamPlayer2D
 
+## The scale for the point light for the amount of masks collected in the antique.
+@export var point_light_scale_per_mask_count: Array[float]
 
 @onready var attack_area: Area2D = $AttackArea
 @onready var invincibility_timer: Timer = $InvincibilityTimer
+@onready var point_light: PointLight2D = $PointLight2D
 
-@export var footstep_sound_player : AudioStreamPlayer2D
 var is_attacking: bool = false
 var is_dead: bool = false
 # Damage multiplier is set by mask effects.
@@ -30,7 +33,7 @@ func _init() -> void:
 func _ready() -> void:
 	attack_effect.visible = false
 	Globals.recalculate_mask_effects.connect(_on_recalculate_mask_effects)
-
+	_on_recalculate_mask_effects()
 
 func _process(_delta: float) -> void:
 	if is_dead:
@@ -116,7 +119,10 @@ func die() -> void:
 func _on_recalculate_mask_effects() -> void:
 	# The second stone age mask gives more damage.
 	damage_multiplier = 1.5 if Globals.mask_count[Globals.LevelId.StoneAge] >= 2 else 1.0
-	print(damage_multiplier)
+	var current_scale = point_light_scale_per_mask_count[Globals.mask_count[Globals.LevelId.Antique]]
+	if current_scale != point_light.texture_scale:
+		var tween = create_tween()
+		tween.tween_property(point_light, "texture_scale", current_scale, 0.6).set_trans(Tween.TRANS_BACK)
 
 var skip_frame = true
 func _on_player_legs_frame_changed() -> void:
