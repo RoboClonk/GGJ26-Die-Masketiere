@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ditt1j1ooojdu"]
+
+[ext_resource type="Script" uid="uid://bdny0ndxm23wr" path="res://menus/main_menu.gd" id="1_8gy84"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_kvqlu"]
+color = Color(1, 1, 1, 1)
+thickness = 5
+
+[node name="MainMenu" type="Control" unique_id=1821274012]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8gy84")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=711546390]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1591340141]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1451418568]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Masquerade at the Museum"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1936947239]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_kvqlu")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1889879933]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=883643277]
+layout_mode = 2
+size_flags_horizontal = 5
+text = "Start Game"
+
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=516935539]
+layout_mode = 2
+size_flags_horizontal = 5
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=142416477]
+layout_mode = 2
+size_flags_horizontal = 5
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

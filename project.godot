@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="GGJ26-DieMasketiere"
-run/main_scene="uid://cpqwqoasw33dk"
+run/main_scene="uid://ditt1j1ooojdu"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
 project/assembly_name="GGJ26-DieMasketiere"
+
+[gui]
+
+theme/custom_font="uid://d263q0lpohl03"
 
 [input]
 
