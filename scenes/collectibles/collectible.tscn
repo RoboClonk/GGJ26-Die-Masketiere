@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dk5ia4h84xgn7"]
+
+[ext_resource type="Script" uid="uid://d026p1kidbvt0" path="res://scenes/collectibles/collectible.gd" id="1_lb3xb"]
+
+[node name="Collectible" type="Area2D" unique_id=1604206455]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_lb3xb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=874118832]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

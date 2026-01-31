@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c41x2matg7jn5"]
+
+[ext_resource type="PackedScene" uid="uid://dk5ia4h84xgn7" path="res://scenes/collectibles/collectible.tscn" id="1_ais5i"]
+[ext_resource type="Script" uid="uid://c1b41as6m4t10" path="res://scenes/collectibles/coin.gd" id="2_867vd"]
+[ext_resource type="Texture2D" uid="uid://b7k60tpa2c7g3" path="res://art/sprites/coin.png" id="2_h6jfl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6jfl"]
+
+[node name="Coin" unique_id=1604206455 instance=ExtResource("1_ais5i")]
+script = ExtResource("2_867vd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0" unique_id=1585969217]
+texture = ExtResource("2_h6jfl")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=874118832]
+shape = SubResource("CircleShape2D_h6jfl")

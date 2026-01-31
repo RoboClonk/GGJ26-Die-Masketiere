@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://7an8l0cxxr8c"]
+
+[ext_resource type="PackedScene" uid="uid://dk5ia4h84xgn7" path="res://scenes/collectibles/collectible.tscn" id="1_kbmjh"]
+[ext_resource type="Texture2D" uid="uid://pit5bppjgj8d" path="res://art/sprites/mask_placeholder.png" id="2_ss8jw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_se8px"]
+
+[node name="Mask" unique_id=1604206455 instance=ExtResource("1_kbmjh")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=874118832]
+shape = SubResource("CircleShape2D_se8px")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1" unique_id=1598517304]
+texture = ExtResource("2_ss8jw")

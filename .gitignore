@@ -18,3 +18,4 @@ Builds/
 
 *.tmp
 
+.DS_Store
