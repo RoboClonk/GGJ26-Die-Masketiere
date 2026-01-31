@@ -6,8 +6,8 @@
 [ext_resource type="Script" uid="uid://d30k2574ci8gx" path="res://scenes/ground_tilemap.gd" id="3_ljss4"]
 [ext_resource type="PackedScene" uid="uid://d22xb1khcbtt2" path="res://scenes/bitowl/my_simple_enemy.tscn" id="4_ef2nq"]
 [ext_resource type="PackedScene" uid="uid://bgq18ctougppm" path="res://scenes/interactables/pedestal.tscn" id="5_2y6o8"]
-[ext_resource type="Texture2D" uid="uid://bgeq10pu1yjt2" path="res://art/sprites/light_circle_128.png" id="5_5vkbt"]
 [ext_resource type="PackedScene" uid="uid://cn3unuf7v6gjw" path="res://scenes/interactables/pedestal_tall.tscn" id="6_2lhn6"]
+[ext_resource type="Texture2D" uid="uid://b73t684g8ft1k" path="res://art/sprites/2d_lights_and_shadows_neutral_point_light.webp" id="6_2y6o8"]
 [ext_resource type="PackedScene" uid="uid://duc0f1iyioujj" path="res://scenes/interactables/mask.tscn" id="7_yq6ii"]
 [ext_resource type="Texture2D" uid="uid://boej8ib2ewd6t" path="res://art/masks/AntiqueRight.png" id="8_l4dt6"]
 [ext_resource type="PackedScene" uid="uid://rg2mybxmh3wx" path="res://scenes/objects/lamp.tscn" id="8_ljss4"]
@@ -27,11 +27,11 @@ enemy_scenes = Array[PackedScene]([ExtResource("4_ef2nq")])
 enemy_waves = [NodePath("Enemies/Wave0"), NodePath("Enemies/Wave1")]
 
 [node name="Darkness Canvas" type="CanvasModulate" parent="." index="0" unique_id=1640573539]
-visible = false
 light_mask = 0
-color = Color(0.22130162, 0.22130162, 0.22130159, 1)
+color = Color(0.35906908, 0.35906908, 0.35906908, 1)
 
 [node name="Darkness" type="DirectionalLight2D" parent="." index="1" unique_id=108236784]
+visible = false
 color = Color(0.5609549, 0.5609549, 0.5609549, 1)
 blend_mode = 1
 
@@ -60,8 +60,8 @@ animation = &"Attack"
 stream = SubResource("AudioStreamWAV_p47bc")
 
 [node name="PointLight2D" type="PointLight2D" parent="Player" index="10" unique_id=1434477845]
-texture = ExtResource("5_5vkbt")
-texture_scale = 1.3
+texture = ExtResource("6_2y6o8")
+texture_scale = 0.61
 
 [node name="Wave0" type="Node2D" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=985177452]
 

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://rg2mybxmh3wx"]
 
-[ext_resource type="Texture2D" uid="uid://biht6bsfxtcol" path="res://art/sprites/light_circle.png" id="1_06rti"]
+[ext_resource type="Texture2D" uid="uid://b73t684g8ft1k" path="res://art/sprites/2d_lights_and_shadows_neutral_point_light.webp" id="1_06rti"]
 [ext_resource type="Texture2D" uid="uid://uaa0j1wdkq7m" path="res://art/sprites/lamp.png" id="2_1ngp2"]
 
 [node name="lamp" type="Node2D" unique_id=1077203162]
@@ -8,6 +8,7 @@
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=836757091]
 color = Color(1, 0.827451, 0.54509807, 1)
 texture = ExtResource("1_06rti")
+texture_scale = 0.15
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1827380965]
 texture = ExtResource("2_1ngp2")
