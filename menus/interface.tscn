@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cdfetrgmxtpxs"]
 
 [ext_resource type="Script" uid="uid://djoln41hqjjxi" path="res://menus/interface.gd" id="1_27vvk"]
+[ext_resource type="Material" uid="uid://pylwj71dvexw" path="res://materials/canvas_unshaded.tres" id="2_jne5a"]
 [ext_resource type="FontFile" uid="uid://d263q0lpohl03" path="res://assets/font/PressStart2P-Regular.ttf" id="2_qd775"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qd775"]
@@ -34,6 +35,7 @@ grow_vertical = 2
 script = ExtResource("1_27vvk")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1367495757]
+material = ExtResource("2_jne5a")
 layout_mode = 0
 offset_left = 20.0
 offset_top = 601.0
@@ -47,6 +49,7 @@ step = 1.0
 value = 5.0
 
 [node name="AttackCountDown" type="ProgressBar" parent="." unique_id=165589873]
+material = ExtResource("2_jne5a")
 layout_mode = 0
 offset_left = 512.0
 offset_top = 500.0
