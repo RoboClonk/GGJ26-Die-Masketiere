@@ -1,0 +1,25 @@
+[remap]
+
+importer="Aseprite AnimatedSprite2D Import"
+type="PackedScene"
+uid="uid://chl2jubt8smh3"
+path="res://.godot/imported/PlayerBody.ase-b1f93145ece26241167768f097ed9263.scn"
+
+[deps]
+
+source_file="res://art/entities/PlayerBody.ase"
+dest_files=["res://.godot/imported/PlayerBody.ase-b1f93145ece26241167768f097ed9263.scn"]
+
+[params]
+
+spritesheet/layout=0
+spritesheet/fixed_rows_count=1
+spritesheet/fixed_columns_count=1
+spritesheet/border_type=0
+spritesheet/trim=false
+spritesheet/ignore_empty=false
+spritesheet/merge_duplicates=false
+animation/default/name="default"
+animation/default/direction=0
+animation/default/repeat_count=0
+animation/autoplay=""
