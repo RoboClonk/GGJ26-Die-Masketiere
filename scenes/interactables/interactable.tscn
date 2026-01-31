@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c20v8dl35dy43"]
 
 [ext_resource type="Script" uid="uid://3hoapbv7n53b" path="res://scenes/interactables/interactable.gd" id="1_u3mly"]
+[ext_resource type="Material" uid="uid://pylwj71dvexw" path="res://materials/canvas_unshaded.tres" id="2_86xqs"]
 [ext_resource type="FontFile" uid="uid://d263q0lpohl03" path="res://assets/font/PressStart2P-Regular.ttf" id="2_ikuv3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ikuv3"]
@@ -24,10 +25,12 @@ offset_right = 54.0
 offset_bottom = 14.0
 
 [node name="ColorRect" type="ColorRect" parent="InteractHint" unique_id=491444873]
+material = ExtResource("2_86xqs")
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Label" type="Label" parent="InteractHint" unique_id=1213311279]
+material = ExtResource("2_86xqs")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("2_ikuv3")

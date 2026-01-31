@@ -5,14 +5,25 @@
 [ext_resource type="Script" uid="uid://d30k2574ci8gx" path="res://scenes/ground_tilemap.gd" id="3_ljss4"]
 [ext_resource type="PackedScene" uid="uid://d22xb1khcbtt2" path="res://scenes/bitowl/my_simple_enemy.tscn" id="4_ef2nq"]
 [ext_resource type="PackedScene" uid="uid://bgq18ctougppm" path="res://scenes/interactables/pedestal.tscn" id="5_2y6o8"]
+[ext_resource type="Texture2D" uid="uid://bgeq10pu1yjt2" path="res://art/sprites/light_circle_128.png" id="5_5vkbt"]
 [ext_resource type="PackedScene" uid="uid://cn3unuf7v6gjw" path="res://scenes/interactables/pedestal_tall.tscn" id="6_2lhn6"]
 [ext_resource type="PackedScene" uid="uid://duc0f1iyioujj" path="res://scenes/interactables/mask.tscn" id="7_yq6ii"]
 [ext_resource type="Texture2D" uid="uid://boej8ib2ewd6t" path="res://art/masks/AntiqueRight.png" id="8_l4dt6"]
+[ext_resource type="PackedScene" uid="uid://rg2mybxmh3wx" path="res://scenes/objects/lamp.tscn" id="8_ljss4"]
 
 [node name="StoneageLevel" unique_id=1222927860 node_paths=PackedStringArray("enemy_waves") instance=ExtResource("1_ef2nq")]
 level_id = 0
 enemy_scenes = Array[PackedScene]([ExtResource("4_ef2nq")])
 enemy_waves = [NodePath("Enemies/Wave0"), NodePath("Enemies/Wave1")]
+
+[node name="Darkness Canvas" type="CanvasModulate" parent="." index="0" unique_id=1640573539]
+visible = false
+light_mask = 0
+color = Color(0.22130162, 0.22130162, 0.22130159, 1)
+
+[node name="Darkness" type="DirectionalLight2D" parent="." index="1" unique_id=108236784]
+color = Color(0.5609549, 0.5609549, 0.5609549, 1)
+blend_mode = 1
 
 [node name="GroundLayer" type="TileMapLayer" parent="Tilemaps" parent_id_path=PackedInt32Array(873392170) index="0" unique_id=876772918 node_paths=PackedStringArray("wall_tilemap")]
 z_index = -1
@@ -26,8 +37,19 @@ z_index = -1
 tile_map_data = PackedByteArray("AAAKAAEAAAALAAcAAAALAAAAAAANAAYAAAALAAEAAAANAAcAAAALAAIAAAANAAcAAAALAAMAAAANAAcAAAAKAAIAAAALAAcAAAAKAAMAAAALAAcAAAALAAQAAAANAAcAAAALAAUAAAANAAcAAAAKAAQAAAALAAcAAAAKAAUAAAALAAcAAAAKAAYAAAALAAcAAAAKAAcAAAAIAAcAAAALAAYAAAANAAcAAAALAAcAAAANAAcAAAAJAAcAAAAMAAYAAAAIAAcAAAAMAAYAAAAHAAcAAAAMAAYAAAAGAAcAAAALAAYAAAAGAAgAAAALAAgAAAAHAAgAAAAMAAgAAAAIAAgAAAAMAAgAAAAJAAgAAAAMAAgAAAAKAAgAAAAMAAgAAAALAAgAAAANAAgAAAAAAP7/AAAEAAMAAAABAP7/AAAEAAMAAAAAAP//AAAAAAMAAAD///7/AAAEAAMAAAAAAP3/AAAAAAEAAAACAP7/AAAEAAMAAAACAP//AAABAAMAAAABAP//AAABAAMAAAABAP3/AAAEAAMAAAACAP3/AAAHAAAAAAD/////AAAEAAMAAAD///3/AAAEAAMAAAADAP7/AAAEAAMAAAADAP//AAABAAMAAAADAP3/AAAEAAMAAAAEAP7/AAAEAAMAAAAEAP//AAABAAMAAAAEAP3/AAAEAAMAAAAFAP7/AAAEAAMAAAAFAP//AAABAAMAAAAFAP3/AAAEAAMAAAAGAP7/AAAEAAMAAAAGAP//AAABAAMAAAAGAP3/AAAEAAMAAAAHAP7/AAAEAAMAAAAHAP//AAABAAMAAAAHAP3/AAAEAAMAAAAIAP7/AAAEAAMAAAAIAP//AAABAAMAAAAIAP3/AAAEAAMAAAAJAP7/AAAEAAMAAAAJAP//AAABAAMAAAAJAP3/AAAEAAMAAAAKAP7/AAAAAAQAAAAKAP//AAANAAgAAAAKAP3/AAAAAAQAAAAJAPz/AAAEAAMAAAAKAPz/AAAAAAQAAAAGAPz/AAAEAAMAAAAFAPz/AAAEAAMAAAAEAPz/AAAEAAMAAAADAPz/AAAEAAMAAAACAPz/AAAEAAMAAAABAPz/AAAEAAMAAAAAAPz/AAACAAEAAAD///z/AAAEAAMAAAD+//7/AAAEAAMAAAD+//3/AAAEAAMAAAD+//z/AAACAAUAAAAKAAAAAAAIAAYAAAAJAPv/AAABAAUAAAD+//v/AAALAAYAAAD///v/AAABAAUAAAAAAPv/AAABAAUAAAAIAPz/AAAEAAMAAAAIAPv/AAABAAUAAAAKAPv/AAANAAYAAAAHAPz/AAAHAAAAAAAHAPv/AAABAAUAAAAGAPv/AAABAAUAAAAFAPv/AAABAAUAAAAEAPv/AAABAAUAAAADAPv/AAABAAUAAAACAPv/AAABAAUAAAABAPv/AAABAAUAAAD+////AAAEAAMAAAAAAAAAAAAAAAQAAAD//wAAAAAEAAMAAAD+/wAAAAAEAAMAAAD9/wAAAAACAAAAAAD9////AAAEAAMAAAD9//7/AAACAAUAAAD8/wAAAAACAAQAAAD8////AAACAAQAAAD8//7/AAALAAYAAAD9//3/AAACAAQAAAD9//z/AAALAAYAAAD//wEAAAAEAAMAAAD+/wEAAAAEAAMAAAD9/wEAAAAEAAMAAAD//wIAAAABAAMAAAD+/wIAAAABAAMAAAD9/wIAAAABAAMAAAAAAAEAAAAAAAQAAAAAAAIAAAANAAgAAAD8/wIAAAALAAgAAAD8/wEAAAACAAQAAAD6/wMAAAAEAAMAAAD7/wMAAAAAAAQAAAD7/wQAAAAAAAQAAAD6/wQAAAAEAAMAAAD5/wMAAAAEAAMAAAD6/wIAAAAAAAUAAAD5/wQAAAAEAAMAAAD5/wIAAAAEAAMAAAD7/wIAAAANAAYAAAD7/wUAAAAAAAQAAAD6/wUAAAAEAAMAAAD5/wUAAAAEAAMAAAD7/wYAAAAAAAQAAAD6/wYAAAAEAAMAAAD5/wYAAAAEAAMAAAD4/wUAAAAAAAAAAAD4/wYAAAAEAAMAAAD4/wQAAAAEAAMAAAD6/wcAAAABAAMAAAD5/wcAAAAAAAMAAAD7/wcAAAANAAgAAAD3/wUAAAAEAAMAAAD3/wYAAAAEAAMAAAD3/wQAAAAEAAMAAAD4/wcAAAAEAAMAAAD4/wMAAAAEAAMAAAD3/wMAAAAEAAMAAAD2/wUAAAAEAAMAAAD2/wYAAAAEAAMAAAD3/wcAAAAEAAMAAAD2/wQAAAAEAAMAAAD2/wMAAAAEAAMAAAD2/wIAAAADAAAAAAD3/wIAAAAEAAMAAAD4/wIAAAAEAAMAAAD1/wMAAAAEAAMAAAD1/wQAAAAGAAAAAAD1/wIAAAAEAAMAAAD0/wMAAAAEAAMAAAD2/wEAAAAEAAMAAAD3/wEAAAAEAAMAAAD4/wEAAAAEAAMAAAD1/wEAAAAEAAMAAAD0/wQAAAAEAAMAAAD0/wIAAAAEAAMAAAD1/wUAAAAEAAMAAAD0/wUAAAAEAAMAAAD1/wYAAAAAAAEAAAD0/wYAAAAEAAMAAAD1/wcAAAAEAAMAAAD2/wcAAAAEAAMAAAD5/wEAAAAAAAUAAAD6/wEAAAANAAYAAAD3/wAAAAABAAUAAAD4/wAAAAABAAUAAAD5/wAAAAANAAYAAAD2/wAAAAABAAUAAAD1/wAAAAABAAUAAAD0/wEAAAACAAUAAAD0/wAAAAALAAYAAADz/wIAAAAEAAQAAADz/wMAAAACAAQAAADz/wQAAAACAAUAAADz/wUAAAADAAEAAADz/wYAAAACAAMAAAD0/wcAAAAEAAMAAADz/wcAAAAEAAQAAAD1/wgAAAABAAMAAAD0/wgAAAABAAMAAAD2/wgAAAABAAMAAAD3/wgAAAABAAMAAAD4/wgAAAABAAMAAAD5/wgAAAANAAgAAADy/wUAAAAEAAMAAADy/wYAAAABAAMAAADy/wQAAAABAAUAAADx/wUAAAAEAAMAAADx/wYAAAABAAMAAADw/wUAAAAEAAEAAADw/wYAAAABAAMAAADv/wUAAAAEAAMAAADv/wYAAAABAAMAAADu/wUAAAAEAAEAAADu/wYAAAABAAMAAADt/wUAAAAEAAMAAADt/wYAAAABAAMAAADs/wUAAAAEAAQAAADt/wQAAAABAAUAAADu/wQAAAABAAUAAADv/wQAAAABAAUAAADw/wQAAAABAAUAAADx/wQAAAABAAUAAADw/wIAAAAMAAgAAADv/wIAAAAMAAgAAADu/wIAAAAMAAgAAADt/wIAAAAAAAMAAADs/wIAAAACAAMAAADr/wIAAAAMAAgAAADq/wIAAAAHAAgAAADs/wEAAAAMAAYAAADt/wEAAAAMAAYAAADu/wEAAAAMAAYAAADv/wEAAAAMAAYAAADw/wEAAAAMAAYAAADr/wEAAAAMAAYAAADq/wEAAAAHAAcAAADx/wEAAAAKAAcAAADx/wIAAAAKAAgAAADt/wMAAAAAAAQAAADs/wMAAAACAAQAAADv/xIAAAACAAQAAADw/xIAAAAAAAQAAAA=")
 tile_set = ExtResource("2_5vkbt")
 
-[node name="Player" parent="." index="1" unique_id=2059150865]
+[node name="Player" parent="." index="3" unique_id=2059150865]
 position = Vector2(32, 50)
+
+[node name="Interface" parent="Player/CanvasLayer" parent_id_path=PackedInt32Array(2059150865, 1474616031) index="0" unique_id=55518087]
+light_mask = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Player" index="10" unique_id=1434477845]
+texture = ExtResource("5_5vkbt")
+texture_scale = 1.3
 
 [node name="Wave0" type="Node2D" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=985177452]
 
@@ -57,12 +79,25 @@ pedestal_item_frame = 37
 
 [node name="Pedestal2" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="1" unique_id=1529930657 instance=ExtResource("6_2lhn6")]
 position = Vector2(105, 70)
+pedestal_item_frame = 33
 
-[node name="Mask1" parent="." index="5" unique_id=1357724540 instance=ExtResource("7_yq6ii")]
+[node name="lamp" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="2" unique_id=1077203162 instance=ExtResource("8_ljss4")]
+position = Vector2(34, -23)
+
+[node name="lamp2" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="3" unique_id=1034776628 instance=ExtResource("8_ljss4")]
+position = Vector2(66, -22)
+
+[node name="lamp3" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="4" unique_id=870319326 instance=ExtResource("8_ljss4")]
+position = Vector2(100, -23)
+
+[node name="lamp4" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="5" unique_id=1161626594 instance=ExtResource("8_ljss4")]
+position = Vector2(130, -22)
+
+[node name="Mask1" parent="." index="7" unique_id=1357724540 instance=ExtResource("7_yq6ii")]
 position = Vector2(-61, 183)
 mask = 1
 
-[node name="Mask0" parent="." index="6" unique_id=752609315 instance=ExtResource("7_yq6ii")]
+[node name="Mask0" parent="." index="8" unique_id=752609315 instance=ExtResource("7_yq6ii")]
 position = Vector2(123, 173)
 
 [node name="AntiqueLeft" parent="Mask0" index="3" unique_id=810192070]
@@ -108,4 +143,5 @@ position = Vector2(-84, 148)
 [node name="Marker2D13" type="Marker2D" parent="EnemySpawnPoints" parent_id_path=PackedInt32Array(437125383) index="12" unique_id=150863871]
 position = Vector2(-62, 60)
 
+[editable path="Player"]
 [editable path="Mask0"]
