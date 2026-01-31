@@ -4,6 +4,43 @@ class_name Player
 
 @export var speed: float = 20
 
+@export var legs: AnimatedSprite2D
+@export var body: AnimatedSprite2D
+
+var is_attacking = false;
+
+
+func _process(delta: float) -> void:
+	if velocity.length_squared() > 10.0 and legs.get_animation() != "Walk":
+		legs.play("Walk")
+	elif velocity.length_squared() < 1.0 and legs.get_animation() != "Idle":
+		legs.play("Idle")
+	
+	if abs(velocity.x) > 0:
+		legs.flip_h = velocity.x < 0
+		body.flip_h = velocity.x < 0
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("Attack") and !is_attacking:
+		is_attacking = true
+		trigger_attack()
+
+
+func trigger_attack():
+	body.play("Attack")
+	await get_tree().create_timer(0.2).timeout
+	
+	#TODO Hit Check and Damage
+	
+	await get_tree().create_timer(0.2).timeout
+	is_attacking = false
+
+
+func _on_player_body_animation_finished() -> void:
+	body.play("Idle")
+
+
 func _physics_process(_delta: float) -> void:
 	var input_vector = Input.get_vector("left", "right", "up", "down")
 	velocity = input_vector * speed
