@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bo0guleu73iym" path="res://art/entities/PlayerBody.png" id="3_lvxji"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7p2l"]
-radius = 9.0
-height = 20.0
+radius = 3.0
+height = 16.0
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_x7p2l"]
 
@@ -191,7 +191,7 @@ legs = NodePath("PlayerLegs")
 body = NodePath("PlayerBody")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297313665]
-position = Vector2(0, -10)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_x7p2l")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=836232678]
