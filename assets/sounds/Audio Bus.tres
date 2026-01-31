@@ -1,0 +1,16 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://cfbsm8ixxg3rp"]
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_umtkw"]
+resource_name = "Limiter"
+ceiling_db = -5.2
+
+[resource]
+bus/0/volume_db = -0.0016212463
+bus/1/name = &"Background"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = -0.0016212463
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectLimiter_umtkw")
+bus/1/effect/0/enabled = true
