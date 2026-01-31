@@ -18,8 +18,13 @@ signal mask_collected(mask_count: int)
 # Everybody that calculates mask effects should check again if they are active.
 @warning_ignore("unused_signal") 
 signal recalculate_mask_effects()
+
 @onready var cursor_normal = preload("res://assets/nes.css/cursor.png")
 @onready var cursor_hover = preload("res://assets/nes.css/cursor-click.png")
+@onready var cursor_normal_2x = preload("res://assets/nes.css/cursor_2x.png")
+@onready var cursor_hover_2x = preload("res://assets/nes.css/cursor-click_2x.png")
+
+var cursor_2x = false
 
 func _ready():
 	Input.set_custom_mouse_cursor(cursor_normal)
@@ -35,7 +40,13 @@ func setup_hover(node: Node):
 			setup_hover(child)
 
 func _on_hover(control: Control):
-	Input.set_custom_mouse_cursor(cursor_hover)
+	if cursor_2x:
+		Input.set_custom_mouse_cursor(cursor_hover_2x)
+	else:
+		Input.set_custom_mouse_cursor(cursor_hover)
 
 func _on_exit(control: Control):
-	Input.set_custom_mouse_cursor(cursor_normal)
+	if cursor_2x:
+		Input.set_custom_mouse_cursor(cursor_normal_2x)
+	else:
+		Input.set_custom_mouse_cursor(cursor_normal)
