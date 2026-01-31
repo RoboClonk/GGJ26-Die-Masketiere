@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="GGJ26-DieMasketiere"
+config/name="Masquerade at the Museum"
+config/version="1.0"
 run/main_scene="uid://ditt1j1ooojdu"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://o6je6qkv6gf0"
 
 [aseprite_importers]
 
