@@ -189,6 +189,10 @@ func take_damage(instigator : CharacterBody2D, incoming_damage: float, pushback_
 		_current_pushback_intensity = 1.0
 		_current_pushback_velocity = pushback_velocity
 		interrupt_attack()
+		
+	target = instigator # Always attack the instigator 
+	# (This is planned to be used when enemies attack other enemies. 
+	# Or when the player attacks an enemy that was attacking an enemy. It will then attack the player again.
 
 
 func get_target_direction() -> Vector2:
