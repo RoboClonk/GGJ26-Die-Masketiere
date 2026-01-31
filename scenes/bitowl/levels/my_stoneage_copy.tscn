@@ -28,7 +28,7 @@ enemy_waves = [NodePath("Enemies/Wave0"), NodePath("Enemies/Wave1")]
 
 [node name="Darkness Canvas" type="CanvasModulate" parent="." index="0" unique_id=1640573539]
 light_mask = 0
-color = Color(0.35906908, 0.35906908, 0.35906908, 1)
+color = Color(0, 0, 0, 1)
 
 [node name="Darkness" type="DirectionalLight2D" parent="." index="1" unique_id=108236784]
 visible = false
@@ -49,9 +49,6 @@ tile_set = ExtResource("2_5vkbt")
 
 [node name="Player" parent="." index="3" unique_id=2059150865]
 position = Vector2(32, 50)
-
-[node name="Interface" parent="Player" index="0" unique_id=55518087]
-visible = false
 
 [node name="PlayerLegs" parent="Player" index="4" unique_id=1129114372]
 animation = &"Attack"

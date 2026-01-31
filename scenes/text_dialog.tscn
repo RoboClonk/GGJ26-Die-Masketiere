@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://d263q0lpohl03" path="res://assets/font/PressStart2P-Regular.ttf" id="2_u1yea"]
 
 [node name="TextDialog" type="PanelContainer" unique_id=587914214]
+process_mode = 3
 visible = false
 z_index = 11
 anchors_preset = 5
