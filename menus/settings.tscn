@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://kiwji3mn3het"]
+
+[ext_resource type="Script" uid="uid://byc5hvv3ph0fl" path="res://menus/settings.gd" id="1_urrvo"]
+
+[node name="Settings" type="Node2D" unique_id=297047370]
+
+[node name="Settings" type="ColorRect" parent="." unique_id=40350557]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.2680205, 0.03758894, 0.10586337, 1)
+script = ExtResource("1_urrvo")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings" unique_id=905065461]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -137.5
+offset_right = 182.0
+offset_bottom = 137.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/MarginContainer" unique_id=123433651]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Settings/MarginContainer/VBoxContainer" unique_id=2099496512]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="ToggleSound" type="CheckButton" parent="Settings/MarginContainer/VBoxContainer" unique_id=494048611]
+layout_mode = 2
+button_pressed = true
+text = "Sound"
+
+[node name="Back" type="Button" parent="Settings/MarginContainer/VBoxContainer" unique_id=1403735860]
+layout_mode = 2
+text = "Back
+"
+
+[connection signal="toggled" from="Settings/MarginContainer/VBoxContainer/ToggleSound" to="Settings" method="_on_check_sound_toggled"]
+[connection signal="pressed" from="Settings/MarginContainer/VBoxContainer/Back" to="Settings" method="_on_back_pressed"]

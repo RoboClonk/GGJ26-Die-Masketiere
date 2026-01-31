@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bkhc04sgpgdat"]
+
+[ext_resource type="Script" uid="uid://cnlj73qv25v71" path="res://menus/main_menu.gd" id="1_8gy84"]
+
+[node name="MainMenu" type="ColorRect" unique_id=180101687]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0958072, 0.14709288, 0.2817786, 1)
+script = ExtResource("1_8gy84")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=843045374]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 80.0
+offset_right = 1032.0
+offset_bottom = 568.0
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=300518734]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1910445394]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Masquerade at the Museum"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=183632145]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Button_Start" type="Button" parent="MarginContainer/VBoxContainer" unique_id=925645871]
+layout_mode = 2
+text = "Start"
+
+[node name="Button_Settings" type="Button" parent="MarginContainer/VBoxContainer" unique_id=94547185]
+layout_mode = 2
+text = "Settings"
+
+[node name="Button_Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=590562993]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_Start" to="." method="_on_button_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_Settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button_Quit" to="." method="_on_button_quit_pressed"]

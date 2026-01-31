@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://lhpk2gfmf8fo"]
+
+[ext_resource type="Texture2D" uid="uid://bk5wqnmmw248s" path="res://icon.svg" id="1_fafdd"]
+
+[node name="Game" type="Node2D" unique_id=902072094]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=97559028]
+offset_left = 498.0
+offset_top = 238.0
+offset_right = 626.0
+offset_bottom = 366.0
+texture = ExtResource("1_fafdd")
