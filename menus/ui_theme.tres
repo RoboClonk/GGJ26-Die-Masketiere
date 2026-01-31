@@ -14,12 +14,12 @@ border_width_bottom = 8
 border_color = Color(0.4509804, 0.4509804, 0.4509804, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3e24q"]
-bg_color = Color(0.8901961, 0.7019608, 0.4117647, 1)
+bg_color = Color(0.8352941, 0.3019608, 0.023529412, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.8901961, 0.7019608, 0.4117647, 1)
+border_color = Color(0.8352941, 0.3019608, 0.023529412, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnswh"]
 bg_color = Color(0.14406255, 0.14406255, 0.14406258, 1)
