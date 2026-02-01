@@ -59,6 +59,7 @@ func _on_recalculate_mask_effects() -> void:
 		var new_sprite = SpriteFlash.new()
 		new_sprite.texture = highest_prio_per_side[mask_key].sprite
 		new_sprite.offset = Vector2(0, -16)
+		current_flip = new_sprite.flip_h
 		add_child(new_sprite)
 	
 	
