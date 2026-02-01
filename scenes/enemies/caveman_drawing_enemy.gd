@@ -23,6 +23,10 @@ func spear_throw(in_damage : int):
 		return
 	
 	await target_reached
+	if(!get_target()):
+		interrupt_attack()
+		return
+	
 	debug_log("Proceed")
 	can_move = false	
 	enemy_spritesheet.play("Attack")
