@@ -74,8 +74,7 @@ func _on_mask_collected(mask_id: int, mask_info:MaskInfo) -> void:
 	Globals.recalculate_mask_effects.emit()
 
 	# Spawn a wave of enemies.
-	var wave_id = Globals.mask_count[level_id] if spawn_waves_by_mask_count else mask_id
-	
+	var wave_id = Globals.mask_count[level_id] - 1 if spawn_waves_by_mask_count else mask_id
 	if wave_id < enemy_waves.size():
 		var wave = enemy_waves[wave_id]
 		if wave:
