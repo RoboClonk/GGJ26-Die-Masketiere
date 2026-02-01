@@ -9,11 +9,14 @@ extends Control
 @onready var volume_background: HSlider = $VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Sound/VBoxContainer/VolumeBackground
 @onready var fullscreen_toggle: CheckButton = $VBoxContainer/MarginBox/SettingsMenu/HBoxContainer/Graphics/VBoxContainer/FullscreenToggle
 
+@export var fade_duration: float = 0.5
+
 var config := ConfigFile.new()
 const SETTINGS_PATH = "user://settings.cfg"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	TransitionOverlay.fade_out(fade_duration)
 	Globals.setup_hover(get_tree().get_root())
 	settings_menu.visible = false
 	
@@ -44,6 +47,7 @@ func _process(_delta: float) -> void:
 		
 
 func _on_start_game_pressed() -> void:
+	await TransitionOverlay.fade_to_black(fade_duration)
 	get_tree().change_scene_to_file("res://scenes/levels/stoneage.tscn")
 
 
@@ -95,4 +99,5 @@ func _on_fullscreen_toggle_toggled(toggled_on: bool) -> void:
 
 func _on_continue_pressed() -> void:
 	var level = Globals.LevelLookup[SaveStuffToDisk.last_level]
+	await TransitionOverlay.fade_to_black(fade_duration)
 	get_tree().change_scene_to_file(level)
