@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bgfoncibos763"]
+
+[ext_resource type="Script" uid="uid://x8ca6xpk8d3v" path="res://menus/death_screen.gd" id="1_0v08c"]
+[ext_resource type="Theme" uid="uid://dg6i2216yg4dc" path="res://menus/ui_theme.tres" id="1_qnkr8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v08c"]
+bg_color = Color(0, 0, 0, 0)
+corner_detail = 1
+
+[node name="DeathScreen" type="Control" unique_id=214914419]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0v08c")
+
+[node name="DeathScreenPanel" type="Panel" parent="." unique_id=327817039]
+layout_mode = 0
+offset_right = 2000.0
+offset_bottom = 1000.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0v08c")
+
+[node name="Menu" type="VBoxContainer" parent="DeathScreenPanel" unique_id=950060864]
+z_index = 20
+layout_mode = 0
+offset_left = 503.0
+offset_top = 214.0
+offset_right = 663.0
+offset_bottom = 345.0
+
+[node name="Label" type="Label" parent="DeathScreenPanel/Menu" unique_id=2023710089]
+layout_mode = 2
+text = "You died"
+horizontal_alignment = 1
+
+[node name="Respawn" type="Button" parent="DeathScreenPanel/Menu" unique_id=298244446]
+layout_mode = 2
+theme = ExtResource("1_qnkr8")
+text = "Respawn"
+
+[node name="MainMenu" type="Button" parent="DeathScreenPanel/Menu" unique_id=424485902]
+layout_mode = 2
+theme = ExtResource("1_qnkr8")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="DeathScreenPanel/Menu" unique_id=2131962619]
+layout_mode = 2
+theme = ExtResource("1_qnkr8")
+text = "Quit"
+
+[connection signal="pressed" from="DeathScreenPanel/Menu/Respawn" to="." method="_on_respawn_pressed"]
+[connection signal="pressed" from="DeathScreenPanel/Menu/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="DeathScreenPanel/Menu/Quit" to="." method="_on_quit_pressed"]
