@@ -23,6 +23,7 @@ static var player : Player
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var point_light: PointLight2D = $PointLight2D
 @export var attack_swing_sounds: AudioStreamPlayer2D
+@export var hit_sounds: AudioStreamPlayer2D
 
 
 var is_attacking: bool = false
@@ -98,7 +99,7 @@ func _on_attack_area_body_entered(physics_body: Node2D) -> void:
 		attack_effect.visible = true
 		
 
-func take_damage(instigator : CharacterBody2D, incoming_damage: float) -> void:
+func take_damage(_instigator : CharacterBody2D, incoming_damage: float) -> void:
 	if not invincibility_timer.time_left:
 		Globals.player_health -= incoming_damage
 		if Globals.player_health <= 0:
@@ -108,6 +109,8 @@ func take_damage(instigator : CharacterBody2D, incoming_damage: float) -> void:
 		# Legs use same material as body, so we only need to set the shader parameters to flash on one.
 		body.flash(0.1, 0.2)
 		invincibility_timer.start()
+		print("HIT")
+		hit_sounds.play()
 		
 
 func die() -> void:

@@ -6,12 +6,16 @@
 [ext_resource type="SpriteFrames" uid="uid://b3esrjopmp6pt" path="res://art/entities/Legs.tres" id="2_gmlin"]
 [ext_resource type="SpriteFrames" uid="uid://kpftjh6ywxev" path="res://art/entities/Body.tres" id="3_lvxji"]
 [ext_resource type="Shader" uid="uid://cd0q8jdhx5vpx" path="res://shaders/flash.gdshader" id="3_p47bc"]
-[ext_resource type="Script" path="res://scenes/animated_sprite_flash.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://dsyyefxytmf6d" path="res://scenes/animated_sprite_flash.gd" id="5_p47bc"]
 [ext_resource type="Texture2D" uid="uid://c7sh05vbygiia" path="res://art/entities/PlayerAttackEffect.png" id="6_75vfm"]
 [ext_resource type="AudioStream" uid="uid://sowh21mrf481" path="res://assets/sounds/footstep_randomizer.tres" id="8_5gtgg"]
 [ext_resource type="Texture2D" uid="uid://c733b3h88vgop" path="res://art/sprites/light_stronger.png" id="10_h17s1"]
 [ext_resource type="Script" uid="uid://dj3a5ixluat1v" path="res://scenes/player/mask_attach_parent.gd" id="11_fm80t"]
 [ext_resource type="AudioStream" uid="uid://b1thiosmou6ai" path="res://assets/sounds/waepon_swing_randomizer.tres" id="12_fm80t"]
+[ext_resource type="AudioStream" uid="uid://bvo8f70jomtvb" path="res://assets/sounds/player hiy 1.wav" id="13_myrg7"]
+[ext_resource type="AudioStream" uid="uid://b2u73vmn18ns5" path="res://assets/sounds/player hit 2.wav" id="14_kvlxm"]
+[ext_resource type="AudioStream" uid="uid://dimqqwq6neqmp" path="res://assets/sounds/player hit 3.wav" id="15_uf5tr"]
+[ext_resource type="AudioStream" uid="uid://d2dytuujs2a65" path="res://assets/sounds/player hit 4.wav" id="16_lgqa7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7p2l"]
 radius = 3.0
@@ -27,7 +31,14 @@ shader_parameter/flash = 0.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_gmlin"]
 radius = 21.0
 
-[node name="Player" type="CharacterBody2D" unique_id=2059150865 node_paths=PackedStringArray("legs", "body", "attack_effect", "footstep_sound_player", "mask_attach_parent", "attack_swing_sounds")]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8ydkj"]
+streams_count = 4
+stream_0/stream = ExtResource("13_myrg7")
+stream_1/stream = ExtResource("14_kvlxm")
+stream_2/stream = ExtResource("15_uf5tr")
+stream_3/stream = ExtResource("16_lgqa7")
+
+[node name="Player" type="CharacterBody2D" unique_id=2059150865 node_paths=PackedStringArray("legs", "body", "attack_effect", "footstep_sound_player", "mask_attach_parent", "attack_swing_sounds", "hit_sounds")]
 collision_layer = 2
 collision_mask = 11
 platform_on_leave = 2
@@ -42,6 +53,7 @@ footstep_sound_player = NodePath("RunningOnConcrete")
 mask_attach_parent = NodePath("MaskAttachParent")
 point_light_scale_per_mask_count = Array[float]([0.6, 0.75, 0.9, 1.1])
 attack_swing_sounds = NodePath("AttackSwingSounds")
+hit_sounds = NodePath("HitSounds")
 
 [node name="Interface" parent="." unique_id=55518087 instance=ExtResource("2_75vfm")]
 visible = false
@@ -119,7 +131,10 @@ animated_sprite = NodePath("../PlayerBody")
 [node name="AttackSwingSounds" type="AudioStreamPlayer2D" parent="." unique_id=1033397576]
 stream = ExtResource("12_fm80t")
 volume_db = -4.0
-bus = &"SFX"
+
+[node name="HitSounds" type="AudioStreamPlayer2D" parent="." unique_id=802370422]
+stream = SubResource("AudioStreamRandomizer_8ydkj")
+volume_db = 1.631
 
 [connection signal="frame_changed" from="PlayerLegs" to="." method="_on_player_legs_frame_changed"]
 [connection signal="animation_finished" from="PlayerBody" to="." method="_on_player_body_animation_finished"]
