@@ -20,7 +20,7 @@ var LevelLookup: Dictionary[LevelId, String] = {
 }
 
 # Mask count in each level.
-var mask_count: Array[int] = [0, 0, 0]
+var mask_count: Array[int] = [0, 0, 0, 0, 0]
 
 var collected_masks : Array[MaskInfo]
 
