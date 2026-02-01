@@ -51,7 +51,7 @@ signal target_reached()
 
 func _ready() -> void:
 	#target = Player.player
-	print("Ready")
+	debug_log("Ready")
 	
 	navigation_agent.navigation_finished.connect(Callable(self, "_move_to_finished"))
 	_default_max_speed = navigation_agent.max_speed
