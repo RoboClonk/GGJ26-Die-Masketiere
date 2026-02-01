@@ -6,6 +6,7 @@ class_name EnemyBase
 @export var attack_cooldown_max: float = 1.5
 @export var forget_radius: float = 200.0
 @export var invert_flip: bool = false
+@export var min_nav_target_distance: float = 0.0
 var _default_max_speed = 100
 var _default_speed = 50
 @export var health: float = 3:
@@ -153,7 +154,8 @@ func set_sprite_direction(look_at_location : Vector2):
 
 func _on_pathfinding_timer_timeout() -> void:
 	if is_instance_valid(get_target()) and !_is_in_override_navigation:
-		navigation_agent.target_position = get_target().global_position
+		var direction = (get_target().global_position - global_position).limit_length(min_nav_target_distance)
+		navigation_agent.target_position = get_target().global_position - direction
 
 
 func set_movement_speed_multiplier(in_multiplier : float):
@@ -169,6 +171,7 @@ func move_to(new_position : Vector2) -> bool:
 	if !navigation_agent.is_target_reachable():
 		printerr("Target not reachable")
 		_is_in_override_navigation = false
+		navigation_agent.target_position = global_position # Just reset to itself
 		return false
 		
 	return true
@@ -264,10 +267,12 @@ func default_attack(in_damage : int):
 func charge_attack(in_damage : int, charge_audio_player : AudioStreamPlayer2D = null, position_arc_degrees = 90.0, position_arc_distance = 80.0, charge_speed_multiplier = 3.0):
 	if(!get_target()):
 		finish_attack()
+		return
 	
 	# Move to random location on a half circle between player and enemy which is 80 pixels away from player
 	if !move_to(get_position_in_arc_before_target(position_arc_degrees, position_arc_distance)):
 		interrupt_attack() # Not reachable
+		return
 	
 	await target_reached
 	can_move = false
@@ -277,12 +282,14 @@ func charge_attack(in_damage : int, charge_audio_player : AudioStreamPlayer2D = 
 	
 	if(!get_target()):
 		interrupt_attack()
+		return
 	
 	set_sprite_direction(get_target().global_position) # Just flip sprites towards player
 	
 	set_movement_speed_multiplier(charge_speed_multiplier)
 	if !move_to(get_target().global_position + get_target_direction() * 30.0):
 		interrupt_attack() # Not reachable
+		return
 	
 	if charge_audio_player:
 		charge_audio_player.play()
