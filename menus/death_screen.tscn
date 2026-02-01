@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bgfoncibos763"]
 
 [ext_resource type="Script" uid="uid://x8ca6xpk8d3v" path="res://menus/death_screen.gd" id="1_0v08c"]
-[ext_resource type="Theme" uid="uid://dg6i2216yg4dc" path="res://menus/ui_theme.tres" id="1_qnkr8"]
+[ext_resource type="Theme" uid="uid://dwts86h6tnidg" path="res://menus/ui_theme.tres" id="1_qnkr8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v08c"]
 bg_color = Color(0, 0, 0, 0)

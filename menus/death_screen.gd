@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _on_respawn_pressed() -> void:
-	Globals.reset_player()
+	Globals.reset_player(coming_from_level)
 	var level = Globals.LevelLookup[coming_from_level]
 	get_tree().change_scene_to_file(level)
  

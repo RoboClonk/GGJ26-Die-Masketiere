@@ -47,13 +47,19 @@ func quit():
 	SaveStuffToDisk.save_last_level(SaveStuffToDisk.last_level)
 	get_tree().quit()
 
-func reset_player() -> void:
+func reset_player(from_level: LevelId) -> void:
 	var nodes_to_remove = ["Player", "PlayerDead"]
 	for node in get_tree().get_root().get_children():
 		if node.name in nodes_to_remove:
 			node.queue_free()
 			
 	player_health = INITIAL_PLAYER_HEALTH
+	mask_count[from_level] = 0
+	var cm = collected_masks.duplicate()
+	for mask in collected_masks:
+		if mask.group == from_level:
+			cm.erase(mask)
+	collected_masks = cm
 	get_tree().paused = false
 
 func get_current_level() -> LevelId:
@@ -66,7 +72,7 @@ func get_current_level() -> LevelId:
 
 func goto_main_menu() -> void:
 	SaveStuffToDisk.save_last_level(get_current_level())
-	reset_player()
+	reset_player(get_current_level())
 	get_tree().change_scene_to_packed(MAIN_MENU)
 
 
