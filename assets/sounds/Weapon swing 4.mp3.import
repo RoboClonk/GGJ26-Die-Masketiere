@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cb1nlyqm811x7"
+path="res://.godot/imported/Weapon swing 4.mp3-744283b3b1179f53aa4b8737a0c88c13.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Weapon swing 4.mp3"
+dest_files=["res://.godot/imported/Weapon swing 4.mp3-744283b3b1179f53aa4b8737a0c88c13.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

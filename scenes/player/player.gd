@@ -22,6 +22,9 @@ static var player : Player
 @onready var attack_area: Area2D = $AttackArea
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var point_light: PointLight2D = $PointLight2D
+@export var attack_swing_sounds: AudioStreamPlayer2D
+@export var hit_sounds: AudioStreamPlayer2D
+
 
 var is_attacking: bool = false
 var is_dead: bool = false
@@ -65,7 +68,9 @@ func trigger_attack():
 	body.stop()
 	body.play("Attack")
 	Globals.emit_signal("attack_signal", 0.4)
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.1).timeout
+	attack_swing_sounds.play()
+	await get_tree().create_timer(0.1).timeout
 	
 	# Activate attack area to trigger damage on all enemies that are inside.
 	# @see _on_attack_area_body_entered
@@ -94,7 +99,7 @@ func _on_attack_area_body_entered(physics_body: Node2D) -> void:
 		attack_effect.visible = true
 		
 
-func take_damage(instigator : CharacterBody2D, incoming_damage: float) -> void:
+func take_damage(_instigator : CharacterBody2D, incoming_damage: float) -> void:
 	if not invincibility_timer.time_left:
 		Globals.player_health -= incoming_damage
 		if Globals.player_health <= 0:
@@ -104,6 +109,8 @@ func take_damage(instigator : CharacterBody2D, incoming_damage: float) -> void:
 		# Legs use same material as body, so we only need to set the shader parameters to flash on one.
 		body.flash(0.1, 0.2)
 		invincibility_timer.start()
+		print("HIT")
+		hit_sounds.play()
 		
 
 func die() -> void:

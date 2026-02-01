@@ -24,6 +24,10 @@ var _default_speed = 50
 @onready var animated_sprite_flash: AnimatedSpriteFlash = $EnemySpritesheet
 @onready var attack_sprite: Sprite2D = $AttackSprite
 @onready var nearby_shape: CollisionShape2D = $DetectionArea/CollisionShape2D
+@export var attack_area: Area2D
+@export var attack_area_shape: CollisionShape2D
+
+@onready var hit_sounds: AudioStreamPlayer2D = $HitSounds
 
 var target: Node2D
 var is_player_in_attack_range: bool = false
@@ -34,19 +38,32 @@ var _is_attacking = false
 var _current_pushback_intensity = 0.0
 var _current_pushback_velocity = Vector2.ZERO
 var _time_spend_on_current_navigation = 0.0
-var _max_time_spending_in_navigation = 5.0
+var _max_time_spending_in_navigation = 3.5
 var _first_overlap_check = true # Check on spawn, if player is nearby
 
+var do_debug_log : bool = false
+
 var active_timers : Array[Timer]
+
+var current_attack_name : String = ""
 
 signal target_reached()
 
 func _ready() -> void:
 	#target = Player.player
+	print("Ready")
 	
 	navigation_agent.navigation_finished.connect(Callable(self, "_move_to_finished"))
 	_default_max_speed = navigation_agent.max_speed
 	_default_speed = speed
+
+
+func _enter_tree() -> void:
+	_first_overlap_check = true # Overlap again to see if target is already in range
+
+
+func _exit_tree() -> void:
+	target = null
 
 
 func create_local_timer(duration) -> Timer:
@@ -66,6 +83,9 @@ func get_target() -> Node2D:
 
 
 func _process(delta: float) -> void:
+	if !is_inside_tree():
+		return
+	
 	choose_attack()
 	
 	if _current_pushback_intensity >= 0:
@@ -98,9 +118,11 @@ func choose_attack():
 		
 	if _is_attacking:
 		return
-		
+	
 	if start_attack():
 		_is_attacking = true
+	else:
+		current_attack_name = ""
 		
 
 func _physics_process(_delta: float) -> void:
@@ -133,16 +155,22 @@ func _physics_process(_delta: float) -> void:
 
 	# Only check once if there is a player already inside our physics shape
 	if !target and _first_overlap_check:
-		var params = PhysicsShapeQueryParameters2D.new()
-		params.shape_rid = nearby_shape.shape.get_rid()
-		var space_state = get_world_2d().direct_space_state
-		var intersections : Array[Dictionary] = space_state.intersect_shape(params, 6)
-		for intersection in intersections:
-			var collider = intersection["collider"]
-			if collider and collider is Player:
-				target = collider
-				break
-		_first_overlap_check = false
+		target_overlap_check()
+
+func target_overlap_check():
+	var params = PhysicsShapeQueryParameters2D.new()
+	params.shape_rid = nearby_shape.shape.get_rid()
+	var space_state = get_world_2d().direct_space_state
+	var intersections : Array[Dictionary] = space_state.intersect_shape(params, 6)
+	for intersection in intersections:
+		var collider = intersection["collider"]
+		if collider and collider is Player:
+			target = collider
+			break
+	_first_overlap_check = false
+	
+	if Player.player.global_position.distance_squared_to(global_position) < attack_area_shape.shape.radius * attack_area_shape.shape.radius:
+		is_player_in_attack_range = true
 
 
 func set_sprite_direction(look_at_location : Vector2):
@@ -164,6 +192,7 @@ func set_movement_speed_multiplier(in_multiplier : float):
 
 # Call in child scripts
 func move_to(new_position : Vector2) -> bool:
+	debug_log("Try move to %s" % [new_position])
 	can_move = true
 	_time_spend_on_current_navigation = 0.0
 	_is_in_override_navigation = true
@@ -182,11 +211,15 @@ func _move_to_finished():
 		return
 		
 	_is_in_override_navigation = false
+	debug_log("Movement finished")
 	target_reached.emit()
 
 
 func stop_movement_override():	
 	_is_in_override_navigation = false
+	navigation_agent.target_position = global_position
+	debug_log("Stopped movement")
+	target_reached.emit()
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
@@ -197,6 +230,7 @@ func take_damage(instigator : CharacterBody2D, incoming_damage: float, pushback_
 	health -= incoming_damage
 	sprite_flash.flash(0.1, 0.2)
 	animated_sprite_flash.flash(0.1, 0.2)
+	hit_sounds.play()
 	if pushback_velocity.length_squared() > 0:
 		_current_pushback_intensity = 1.0
 		_current_pushback_velocity = pushback_velocity
@@ -236,6 +270,8 @@ func start_attack() -> bool:
 	
 
 func default_attack(in_damage : int):
+	debug_log("Started default attack")
+	current_attack_name = "Default attack"
 	can_move = false
 	
 	var timer_duration = 1.0
@@ -265,6 +301,8 @@ func default_attack(in_damage : int):
 
 
 func charge_attack(in_damage : int, charge_audio_player : AudioStreamPlayer2D = null, position_arc_degrees = 90.0, position_arc_distance = 80.0, charge_speed_multiplier = 3.0):
+	current_attack_name = "Charge"
+	debug_log("Started charge")
 	if(!get_target()):
 		finish_attack()
 		return
@@ -313,6 +351,7 @@ func charge_attack(in_damage : int, charge_audio_player : AudioStreamPlayer2D = 
 
 
 func finish_attack():
+	debug_log("Finished attack")
 	can_move = true
 	attack_sprite.modulate.a = 0.0
 	set_movement_speed_multiplier(1.0)
@@ -327,9 +366,9 @@ func finish_attack():
 
 
 func interrupt_attack():
-	if !_is_attacking:
-		return
-		
+	debug_log("Interrupted")
+	_is_attacking = true # make sure we don't trigger new attacks
+	
 	_reset_attack_state()
 	_clear_timers()
 	
@@ -390,3 +429,8 @@ func hit_player_in_range(in_damage : int) -> bool:
 func _die() -> void:
 	_clear_timers()
 	queue_free()
+
+
+func debug_log(message : String):
+	if do_debug_log:
+		print("%s: %s" % [name, message])
