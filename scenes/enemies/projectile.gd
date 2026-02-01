@@ -25,6 +25,6 @@ func _on_body_entered(body: Node2D) -> void:
 		if body == instigator:
 			return
 	
-	if body.has_method("take_damage"):
+	if body.has_method("take_damage") and instigator:
 		body.take_damage(instigator, damage)
 		queue_free()
