@@ -6,13 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bh8t7nk1n6mft" path="res://scenes/music/stoneage_theme.tscn" id="4_251vq"]
 [ext_resource type="PackedScene" uid="uid://jqhvra7mtk0a" path="res://scenes/objects/door.tscn" id="4_j5bmt"]
 [ext_resource type="Texture2D" uid="uid://ci36up65g667k" path="res://art/sprites/CaveDrawingsSprites.png" id="4_stvde"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/caveman_drawing_enemy.tscn" id="7_8xos2"]
 [ext_resource type="PackedScene" uid="uid://bvf7ie61ct7ei" path="res://scenes/interactables/mask_on_pedestal.tscn" id="7_j5bmt"]
 [ext_resource type="PackedScene" uid="uid://duc0f1iyioujj" path="res://scenes/interactables/mask.tscn" id="7_qe77c"]
 [ext_resource type="PackedScene" uid="uid://bjrbjg8lm638c" path="res://scenes/interactables/button.tscn" id="8_epymk"]
 [ext_resource type="PackedScene" uid="uid://dhj2712o4gmi" path="res://scenes/objects/fake_pedestral.tscn" id="9_1mor0"]
 [ext_resource type="PackedScene" path="res://scenes/objects/lamp.tscn" id="9_6d0s8"]
 
-[node name="StoneageLevel" unique_id=1222927860 node_paths=PackedStringArray("closed_door_one", "closed_door_two", "fake_pedestral", "fake_pedestral_2", "fake_pedestral_3", "fake_pedestral_4") instance=ExtResource("1_cwsmi")]
+[node name="StoneageLevel" unique_id=1222927860 node_paths=PackedStringArray("closed_door_one", "closed_door_two", "fake_pedestral", "fake_pedestral_2", "fake_pedestral_3", "fake_pedestral_4", "additional_enemy_waves") instance=ExtResource("1_cwsmi")]
 script = ExtResource("2_6d0s8")
 closed_door_one = NodePath("Objects/ClosedDoorForMaskOne")
 closed_door_two = NodePath("Objects/ClosedDoorForMaskOne2")
@@ -22,6 +23,7 @@ fake_pedestral_3 = NodePath("Objects/fake_Pedestral3")
 fake_pedestral_4 = NodePath("Objects/fake_Pedestral4")
 level_id = 0
 enemy_scenes = Array[PackedScene]([])
+additional_enemy_waves = [NodePath("Enemies/ButtonOneMonsterWave"), NodePath("Enemies/ButtonTwoMonsterWave")]
 
 [node name="Stoneage Theme" parent="." index="0" unique_id=1100986812 instance=ExtResource("4_251vq")]
 
@@ -173,6 +175,27 @@ position = Vector2(952, 334)
 [node name="Player" parent="." index="3" unique_id=2059150865]
 position = Vector2(32, 50)
 
+[node name="ButtonTwoMonsterWave" type="Node2D" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="0" unique_id=1849270351]
+visible = false
+
+[node name="ButtonOneMonsterWave" type="Node2D" parent="Enemies" parent_id_path=PackedInt32Array(373292418) index="1" unique_id=1700798393]
+visible = false
+
+[node name="CavemanDrawing" parent="Enemies/ButtonOneMonsterWave" index="0" unique_id=1045461263 instance=ExtResource("7_8xos2")]
+position = Vector2(861, 304)
+
+[node name="CavemanDrawing2" parent="Enemies/ButtonOneMonsterWave" index="1" unique_id=1939362807 instance=ExtResource("7_8xos2")]
+position = Vector2(793, 368)
+
+[node name="CavemanDrawing3" parent="Enemies/ButtonOneMonsterWave" index="2" unique_id=1097441801 instance=ExtResource("7_8xos2")]
+position = Vector2(794, 326)
+
+[node name="CavemanDrawing4" parent="Enemies/ButtonOneMonsterWave" index="3" unique_id=1286324036 instance=ExtResource("7_8xos2")]
+position = Vector2(853, 239)
+
+[node name="CavemanDrawing5" parent="Enemies/ButtonOneMonsterWave" index="4" unique_id=809348570 instance=ExtResource("7_8xos2")]
+position = Vector2(929, 368)
+
 [node name="Open Door" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="0" unique_id=977470783 instance=ExtResource("4_j5bmt")]
 position = Vector2(-51, 444)
 
@@ -189,10 +212,10 @@ position = Vector2(797, -220)
 position = Vector2(-387, -974)
 
 [node name="Mask on Pedestal (one)" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="5" unique_id=726423690 instance=ExtResource("7_j5bmt")]
-position = Vector2(797, -817)
+position = Vector2(749, 510)
 
 [node name="Mask on Pedestal (two)" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="6" unique_id=1497239872 instance=ExtResource("7_j5bmt")]
-position = Vector2(748, 515)
+position = Vector2(798, -823)
 mask = 1
 
 [node name="Button" parent="Objects" parent_id_path=PackedInt32Array(1880016874) index="7" unique_id=1112941483 instance=ExtResource("8_epymk")]
