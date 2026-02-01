@@ -73,7 +73,7 @@ trumpet = NodePath("MammothTrumpet")
 stomp = NodePath("MammothStomp")
 charge_damage = 1
 stomp_damage = 2
-stomp_radius = 200.0
+stomp_radius = 150.0
 invert_flip = true
 health = 5.0
 
