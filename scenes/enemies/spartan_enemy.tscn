@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://yqnr12vg33mm"]
+
+[ext_resource type="PackedScene" uid="uid://dtu7noaxo562u" path="res://scenes/enemies/enemy_base.tscn" id="1_vqdc5"]
+[ext_resource type="Script" uid="uid://dngojjwadsoek" path="res://scenes/enemies/spartan_enemy.gd" id="2_l6533"]
+[ext_resource type="Shader" uid="uid://cd0q8jdhx5vpx" path="res://shaders/flash.gdshader" id="2_qobo4"]
+[ext_resource type="PackedScene" uid="uid://tlu6qyncg5kg" path="res://scenes/enemies/spartan_spear.tscn" id="3_l6533"]
+[ext_resource type="SpriteFrames" uid="uid://i8ajr2u10f2n" path="res://art/sprites/leonidassprites.tres" id="5_jf3yn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6re15"]
+resource_local_to_scene = true
+shader = ExtResource("2_qobo4")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l6533"]
+resource_local_to_scene = true
+shader = ExtResource("2_qobo4")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l6533"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xtmyr"]
+radius = 30.0
+
+[node name="Spartan" unique_id=616659278 instance=ExtResource("1_vqdc5")]
+script = ExtResource("2_l6533")
+spear_scene = ExtResource("3_l6533")
+speed = 100.0
+attack_cooldown_max = 1.0
+min_nav_target_distance = 10.0
+health = 5.0
+
+[node name="EnemyPlaceholder" parent="." index="0" unique_id=864650589]
+visible = false
+material = SubResource("ShaderMaterial_6re15")
+
+[node name="EnemySpritesheet" parent="." index="1" unique_id=1062563798]
+material = SubResource("ShaderMaterial_l6533")
+sprite_frames = ExtResource("5_jf3yn")
+animation = &"Walk"
+frame_progress = 0.77279145
+offset = Vector2(0, -23)
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=1783457394]
+shape = SubResource("CircleShape2D_l6533")
+
+[node name="CollisionShape2D" parent="DetectionArea" parent_id_path=PackedInt32Array(1472084244) index="0" unique_id=1297026147]
+visible = false
+
+[node name="AttackAreaShape" parent="AttackArea" parent_id_path=PackedInt32Array(1371594350) index="0" unique_id=699821842]
+shape = SubResource("CircleShape2D_xtmyr")
+
+[connection signal="animation_finished" from="EnemySpritesheet" to="." method="_on_enemy_spritesheet_animation_finished"]
