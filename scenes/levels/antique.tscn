@@ -305,6 +305,7 @@ position = Vector2(46, -1)
 wait_time = 10.0
 
 [node name="AnthemOfTheAncient" type="AudioStreamPlayer" parent="." index="12" unique_id=1054620268]
+process_mode = 3
 stream = ExtResource("15_0gbkt")
 volume_db = -5.0
 autoplay = true

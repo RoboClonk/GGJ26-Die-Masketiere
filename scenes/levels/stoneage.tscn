@@ -32,6 +32,7 @@ enemy_scenes = Array[PackedScene]([])
 additional_enemy_waves = [NodePath("Enemies/ButtonOneMonsterWave"), NodePath("Enemies/ButtonTwoMonsterWave")]
 
 [node name="Stoneage Theme" parent="." index="0" unique_id=1100986812 instance=ExtResource("4_251vq")]
+process_mode = 3
 
 [node name="Darkness" parent="." index="1" unique_id=548543368]
 visible = false
