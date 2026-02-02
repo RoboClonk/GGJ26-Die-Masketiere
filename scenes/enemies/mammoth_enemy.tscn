@@ -6,9 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://o6je6qkv6gf0" path="res://icon.png" id="4_f5yay"]
 [ext_resource type="Texture2D" uid="uid://bxeokun43mkpt" path="res://art/entities/mammooth-spritesheet.png" id="5_ofi0u"]
 [ext_resource type="AudioStream" uid="uid://bcqht4rxgpqjy" path="res://assets/sounds/Mammut Trumpet.wav" id="6_pb03d"]
-[ext_resource type="Script" uid="uid://5pxkpp87aviy" path="res://overlap_check.gd" id="7_e3ykl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pb03d"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8rflt"]
+resource_local_to_scene = true
+shader = ExtResource("3_ofi0u")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_axep0"]
 resource_local_to_scene = true
 shader = ExtResource("3_ofi0u")
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -73,16 +78,18 @@ trumpet = NodePath("MammothTrumpet")
 stomp = NodePath("MammothStomp")
 charge_damage = 1
 stomp_damage = 2
-stomp_radius = 150.0
+stomp_radius = 70.0
 invert_flip = true
+min_nav_target_distance = 40.0
 health = 5.0
 
 [node name="EnemyPlaceholder" parent="." index="0" unique_id=864650589]
 visible = false
-material = SubResource("ShaderMaterial_pb03d")
+material = SubResource("ShaderMaterial_8rflt")
 texture = ExtResource("4_f5yay")
 
 [node name="EnemySpritesheet" parent="." index="1" unique_id=1062563798]
+material = SubResource("ShaderMaterial_axep0")
 sprite_frames = SubResource("SpriteFrames_s5g6u")
 animation = &"Walk"
 autoplay = "Walk"
@@ -92,7 +99,7 @@ offset = Vector2(0, -7.035)
 position = Vector2(1, 1)
 rotation = 1.5707964
 
-[node name="CollisionShape2D" parent="AttackArea" parent_id_path=PackedInt32Array(1371594350) index="0" unique_id=699821842]
+[node name="AttackAreaShape" parent="AttackArea" parent_id_path=PackedInt32Array(1371594350) index="0" unique_id=699821842]
 visible = false
 position = Vector2(0, -1)
 
@@ -104,6 +111,3 @@ stream = ExtResource("6_pb03d")
 
 [node name="MammothStomp" type="AudioStreamPlayer2D" parent="." index="9" unique_id=1778882578]
 stream = ExtResource("6_pb03d")
-
-[node name="OverlapCheck" type="Node2D" parent="." index="10" unique_id=1355649308]
-script = ExtResource("7_e3ykl")
