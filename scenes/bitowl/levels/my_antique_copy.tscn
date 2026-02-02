@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://cj36bnbmyq1f4" path="res://tilesets/antique.tres" id="3_76ght"]
 [ext_resource type="PackedScene" uid="uid://c5errvqf11csg" path="res://scenes/objects/antique_exit.tscn" id="3_lc5dm"]
 [ext_resource type="Script" uid="uid://d30k2574ci8gx" path="res://scenes/ground_tilemap.gd" id="4_drayw"]
-[ext_resource type="PackedScene" uid="uid://bq27byiwjyk7g" path="res://scenes/enemies/mammoth.tscn" id="5_7jwy7"]
+[ext_resource type="PackedScene" uid="uid://bq27byiwjyk7g" path="res://scenes/enemies/mammoth_enemy.tscn" id="5_7jwy7"]
 [ext_resource type="PackedScene" uid="uid://dgq38ubwibi54" path="res://scenes/interactables/mask.tscn" id="6_oqe20"]
 [ext_resource type="Resource" uid="uid://deqqawvtecx7c" path="res://scenes/collectibles/MaskInfos/antique_mask_2.tres" id="7_pgb3u"]
 [ext_resource type="Texture2D" uid="uid://b1jqa52mjr1nl" path="res://art/masks/AntiqueMaskRightFinal.png" id="8_2jo06"]
