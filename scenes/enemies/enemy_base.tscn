@@ -91,7 +91,7 @@ texture = ExtResource("5_hm0mn")
 
 [node name="HitSounds" type="AudioStreamPlayer2D" parent="." unique_id=2075555369]
 stream = SubResource("AudioStreamRandomizer_0jp6v")
-volume_db = -3.333
+volume_db = 4.5
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
