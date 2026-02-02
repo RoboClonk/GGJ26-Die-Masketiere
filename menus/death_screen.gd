@@ -18,11 +18,6 @@ func _ready() -> void:
 			node.queue_free()
 			coming_from_level = node.level_id
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
 func _on_respawn_pressed() -> void:
 	Globals.reset_player(coming_from_level)
 	var level = Globals.LevelLookup[coming_from_level]
@@ -37,7 +32,6 @@ func _on_quit_pressed() -> void:
 func fade_to_black(panel: Panel, duration) -> void:
 	var style := panel.get_theme_stylebox("panel").duplicate() as StyleBoxFlat
 	panel.add_theme_stylebox_override("panel", style)
-
 	var tween := create_tween()
 	tween.tween_property(
 		style,
