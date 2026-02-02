@@ -7,6 +7,7 @@ signal dialog_closed()
 
 var is_quittable: bool = false
 
+
 func show_text(text: String) -> void:
 	is_quittable = false
 	label.text = text
@@ -30,3 +31,4 @@ func _process(_delta: float) -> void:
 			get_tree().paused = false
 			hide()
 			dialog_closed.emit()
+			is_quittable = false
