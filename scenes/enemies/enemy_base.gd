@@ -15,7 +15,7 @@ var _default_speed = 50
 		if health <= 0:
 			_die()
 @export var damage: float = 1
-
+var is_dead = false
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 @onready var enemy_placeholder: Sprite2D = $EnemyPlaceholder
@@ -438,8 +438,16 @@ func hit_player_in_range(in_damage : int) -> bool:
 	
 
 func _die() -> void:
+	if is_dead: # In case this is called several times in the same frame
+		return
+	
+	remove_child(hit_sounds)
+	hit_sounds.finished.connect(Callable(hit_sounds, "queue_free"))
+	get_tree().root.add_child(hit_sounds)
+	hit_sounds.global_position = global_position
 	_clear_timers()
 	queue_free()
+	is_dead = true
 
 
 func debug_log(message : String):
