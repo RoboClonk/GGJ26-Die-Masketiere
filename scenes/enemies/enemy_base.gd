@@ -212,13 +212,16 @@ func move_to(new_position : Vector2) -> bool:
 func _move_to_finished():
 	if(!_is_in_override_navigation):
 		return
-		
+	
+	await get_tree().process_frame # Give attack time to wait for target reached signal in case we reach target instantly because it was very close
 	_is_in_override_navigation = false
 	debug_log("Movement finished")
 	target_reached.emit()
 
 
-func stop_movement_override():	
+func stop_movement_override():
+	if !_is_in_override_navigation:
+		return
 	_is_in_override_navigation = false
 	navigation_agent.target_position = global_position
 	debug_log("Stopped movement")
@@ -237,7 +240,8 @@ func take_damage(instigator : CharacterBody2D, incoming_damage: float, pushback_
 	if pushback_velocity.length_squared() > 0:
 		_current_pushback_intensity = 1.0
 		_current_pushback_velocity = pushback_velocity
-		interrupt_attack()
+		
+	interrupt_attack()
 		
 	target = instigator # Always attack the instigator 
 	# (This is planned to be used when enemies attack other enemies. 
@@ -316,6 +320,9 @@ func charge_attack(in_damage : int, charge_audio_player : AudioStreamPlayer2D = 
 		return
 	
 	await target_reached
+	if !_is_attacking:
+		return
+	
 	can_move = false
 	var timer = create_local_timer(0.5)
 	if timer:
@@ -372,6 +379,7 @@ func interrupt_attack():
 	debug_log("Interrupted")
 	_is_attacking = true # make sure we don't trigger new attacks
 	
+	stop_movement_override()
 	_reset_attack_state()
 	_clear_timers()
 	
