@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bvf7ie61ct7ei"]
 
-[ext_resource type="PackedScene" uid="uid://duc0f1iyioujj" path="res://scenes/interactables/mask.tscn" id="1_pn6wy"]
+[ext_resource type="PackedScene" uid="uid://dgq38ubwibi54" path="res://scenes/interactables/mask.tscn" id="1_pn6wy"]
 [ext_resource type="Texture2D" uid="uid://b7hejkrsjs8r3" path="res://art/tilemaps/Stoneage.png" id="2_imbbq"]
+[ext_resource type="Texture2D" uid="uid://pit5bppjgj8d" path="res://art/sprites/mask_placeholder.png" id="3_imbbq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2i8s0"]
 size = Vector2(16, 12)
@@ -22,5 +23,6 @@ hframes = 28
 vframes = 6
 frame = 35
 
-[node name="AntiqueLeft" parent="." index="4" unique_id=810192070]
+[node name="MaskSprite" parent="." index="4" unique_id=810192070]
 position = Vector2(5, 0)
+texture = ExtResource("3_imbbq")
