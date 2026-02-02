@@ -153,9 +153,15 @@ func _physics_process(_delta: float) -> void:
 		
 	#print("Intensity %d, Velocity %v" % [_current_pushback_intensity, _current_pushback_velocity])
 
-	# Only check once if there is a player already inside our physics shape
-	if !target and _first_overlap_check:
-		target_overlap_check()
+	# Reassign player when target is lost (or dead) and player is nearby
+	if !target and Player.player:
+		if Player.player.global_position.distance_squared_to(global_position) < nearby_shape.shape.radius * nearby_shape.shape.radius:
+			target = Player.player
+	
+	if target:
+		if target.global_position.distance_squared_to(global_position) < attack_area_shape.shape.radius * attack_area_shape.shape.radius:
+			is_player_in_attack_range = true
+
 
 func target_overlap_check():
 	var params = PhysicsShapeQueryParameters2D.new()
@@ -168,9 +174,6 @@ func target_overlap_check():
 			target = collider
 			break
 	_first_overlap_check = false
-	
-	if Player.player.global_position.distance_squared_to(global_position) < attack_area_shape.shape.radius * attack_area_shape.shape.radius:
-		is_player_in_attack_range = true
 
 
 func set_sprite_direction(look_at_location : Vector2):
