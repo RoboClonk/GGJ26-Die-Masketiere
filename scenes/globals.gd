@@ -106,3 +106,13 @@ func set_in_interactable_range(is_in_range: bool) -> void:
 		_on_hover(null)
 	else:
 		_on_exit(null)
+
+
+static func is_mobile():
+	if (OS.get_name() == "Android" or
+		OS.get_name() == "iOS" or
+		OS.has_feature("web_android") or # When running in the web. Since OS.get_name() just returns "HTML5"
+		OS.has_feature("web_ios")):
+		return true
+		
+	return false

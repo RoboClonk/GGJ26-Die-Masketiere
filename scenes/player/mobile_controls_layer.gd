@@ -12,7 +12,7 @@ func _ready() -> void:
 	if OS.has_feature("editor"):
 		return
 	
-	if OS.get_name() != "Android" and OS.get_name() != "iOS":
+	if !Globals.is_mobile():
 		queue_free()
 
 

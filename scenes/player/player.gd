@@ -42,7 +42,7 @@ func _ready() -> void:
 	Globals.recalculate_mask_effects.connect(_on_recalculate_mask_effects)
 	_on_recalculate_mask_effects()
 	
-	set_process_unhandled_input(OS.get_name() != "Android" and OS.get_name() != "iOS") # Handle attack via a button on mobile
+	set_process_unhandled_input(!Globals.is_mobile()) # Handle attack via a button on mobile
 
 func _process(_delta: float) -> void:
 	if is_dead:
