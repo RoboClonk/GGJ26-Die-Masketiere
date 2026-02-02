@@ -146,13 +146,14 @@ volume_db = -4.0
 stream = SubResource("AudioStreamRandomizer_8ydkj")
 volume_db = 5.939
 
-[node name="MobileControlsLayer" type="CanvasLayer" parent="." unique_id=753327299 node_paths=PackedStringArray("control_frame", "control_knob", "control_center", "interface")]
+[node name="MobileControlsLayer" type="CanvasLayer" parent="." unique_id=753327299 node_paths=PackedStringArray("control_frame", "control_knob", "control_center", "interface", "attack_button")]
 process_mode = 3
 script = ExtResource("17_kvlxm")
 control_frame = NodePath("Control/ControlFrame")
 control_knob = NodePath("Control/ControlFrame/ControlKnob")
 control_center = NodePath("Control/ControlFrame/ControlCenter")
 interface = NodePath("../CanvasLayer/Interface")
+attack_button = NodePath("Control/AttackButton")
 
 [node name="Control" type="Control" parent="MobileControlsLayer" unique_id=1454643870]
 layout_mode = 3
@@ -244,6 +245,4 @@ expand_icon = true
 [connection signal="animation_finished" from="PlayerBody" to="." method="_on_player_body_animation_finished"]
 [connection signal="frame_changed" from="PlayerBody" to="MaskAttachParent" method="_on_player_body_frame_changed"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="button_down" from="MobileControlsLayer/Control/AttackButton" to="." method="trigger_attack"]
-[connection signal="button_down" from="MobileControlsLayer/Control/AttackButton" to="MobileControlsLayer" method="_on_attack_button_button_down"]
 [connection signal="button_down" from="MobileControlsLayer/Control/Button" to="CanvasLayer/Interface" method="toggle_pause_menu"]
