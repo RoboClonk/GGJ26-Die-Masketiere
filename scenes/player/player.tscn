@@ -16,6 +16,11 @@
 [ext_resource type="AudioStream" uid="uid://b2u73vmn18ns5" path="res://assets/sounds/player hit 2.wav" id="14_kvlxm"]
 [ext_resource type="AudioStream" uid="uid://dimqqwq6neqmp" path="res://assets/sounds/player hit 3.wav" id="15_uf5tr"]
 [ext_resource type="AudioStream" uid="uid://d2dytuujs2a65" path="res://assets/sounds/player hit 4.wav" id="16_lgqa7"]
+[ext_resource type="Script" uid="uid://c1v05nxhheku1" path="res://scenes/player/mobile_controls_layer.gd" id="17_kvlxm"]
+[ext_resource type="Texture2D" uid="uid://dyjwiopfdomqm" path="res://art/sprites/CrowbarHit.png" id="18_uf5tr"]
+[ext_resource type="Texture2D" uid="uid://cajj6i4uyeuo2" path="res://art/sprites/ControlCircleOuter.png" id="19_lgqa7"]
+[ext_resource type="Texture2D" uid="uid://mkqpgpoy01ib" path="res://art/sprites/ControlCircleInner.png" id="20_8ydkj"]
+[ext_resource type="Texture2D" uid="uid://vy34qwgfc4qt" path="res://art/sprites/Pause.png" id="21_3j4b4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x7p2l"]
 radius = 3.0
@@ -38,6 +43,12 @@ stream_1/stream = ExtResource("14_kvlxm")
 stream_2/stream = ExtResource("15_uf5tr")
 stream_3/stream = ExtResource("16_lgqa7")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3j4b4"]
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yj68g"]
+bg_color = Color(0, 0, 0, 0.101960786)
+
 [node name="Player" type="CharacterBody2D" unique_id=2059150865 node_paths=PackedStringArray("legs", "body", "attack_effect", "footstep_sound_player", "mask_attach_parent", "attack_swing_sounds", "hit_sounds")]
 collision_layer = 2
 collision_mask = 11
@@ -55,14 +66,11 @@ point_light_scale_per_mask_count = Array[float]([0.6, 0.75, 0.9, 1.1])
 attack_swing_sounds = NodePath("AttackSwingSounds")
 hit_sounds = NodePath("HitSounds")
 
-[node name="Interface" parent="." unique_id=55518087 instance=ExtResource("2_75vfm")]
-visible = false
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=25187191]
+
+[node name="Interface" parent="CanvasLayer" unique_id=55518087 instance=ExtResource("2_75vfm")]
 z_index = 20
-offset_left = -144.0
-offset_top = -81.0
-offset_right = -144.0
-offset_bottom = -81.0
-scale = Vector2(0.25, 0.25)
+mouse_filter = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297313665]
 rotation = 1.5707964
@@ -75,6 +83,7 @@ scale = Vector2(19.57, 29.31)
 texture = SubResource("PlaceholderTexture2D_x7p2l")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1551943026]
+offset = Vector2(0, -16)
 zoom = Vector2(4, 4)
 
 [node name="PlayerLegs" type="AnimatedSprite2D" parent="." unique_id=1129114372]
@@ -118,6 +127,7 @@ offset = Vector2(0, -16)
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1023919364]
 texture = ExtResource("10_h17s1")
+offset = Vector2(0, -16)
 texture_scale = 0.61
 
 [node name="MaskAttachParent" type="Node2D" parent="." unique_id=1037009732 node_paths=PackedStringArray("animated_sprite")]
@@ -134,9 +144,106 @@ volume_db = -4.0
 
 [node name="HitSounds" type="AudioStreamPlayer2D" parent="." unique_id=802370422]
 stream = SubResource("AudioStreamRandomizer_8ydkj")
-volume_db = 1.631
+volume_db = 5.939
+
+[node name="MobileControlsLayer" type="CanvasLayer" parent="." unique_id=753327299 node_paths=PackedStringArray("control_frame", "control_knob", "control_center", "interface")]
+process_mode = 3
+script = ExtResource("17_kvlxm")
+control_frame = NodePath("Control/ControlFrame")
+control_knob = NodePath("Control/ControlFrame/ControlKnob")
+control_center = NodePath("Control/ControlFrame/ControlCenter")
+interface = NodePath("../CanvasLayer/Interface")
+
+[node name="Control" type="Control" parent="MobileControlsLayer" unique_id=1454643870]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="AttackButton" type="Button" parent="MobileControlsLayer/Control" unique_id=954084157]
+modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -185.0
+offset_top = -185.0
+offset_right = -57.0
+offset_bottom = -57.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_3j4b4")
+action_mode = 0
+icon = ExtResource("18_uf5tr")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ControlFrame" type="TextureRect" parent="MobileControlsLayer/Control" unique_id=341926021]
+modulate = Color(1, 1, 1, 0.5882353)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -192.0
+offset_right = 192.0
+offset_bottom = -64.00006
+grow_vertical = 0
+texture = ExtResource("19_lgqa7")
+
+[node name="ControlKnob" type="TextureRect" parent="MobileControlsLayer/Control/ControlFrame" unique_id=1416054785]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(64, 64)
+texture = ExtResource("20_8ydkj")
+
+[node name="ControlCenter" type="Control" parent="MobileControlsLayer/Control/ControlFrame" unique_id=1873990825]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="MobileControlsLayer/Control" unique_id=220848989]
+modulate = Color(1, 1, 1, 0.39215687)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_yj68g")
+icon = ExtResource("21_3j4b4")
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="frame_changed" from="PlayerLegs" to="." method="_on_player_legs_frame_changed"]
 [connection signal="animation_finished" from="PlayerBody" to="." method="_on_player_body_animation_finished"]
 [connection signal="frame_changed" from="PlayerBody" to="MaskAttachParent" method="_on_player_body_frame_changed"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="button_down" from="MobileControlsLayer/Control/AttackButton" to="." method="trigger_attack"]
+[connection signal="button_down" from="MobileControlsLayer/Control/AttackButton" to="MobileControlsLayer" method="_on_attack_button_button_down"]
+[connection signal="button_down" from="MobileControlsLayer/Control/Button" to="CanvasLayer/Interface" method="toggle_pause_menu"]

@@ -25,6 +25,7 @@ static var player : Player
 @export var attack_swing_sounds: AudioStreamPlayer2D
 @export var hit_sounds: AudioStreamPlayer2D
 
+var mobile_control_vector : Vector2 = Vector2.ZERO
 
 var is_attacking: bool = false
 var is_dead: bool = false
@@ -40,6 +41,8 @@ func _ready() -> void:
 	attack_effect.visible = false
 	Globals.recalculate_mask_effects.connect(_on_recalculate_mask_effects)
 	_on_recalculate_mask_effects()
+	
+	set_process_unhandled_input(OS.get_name() != "Android" and OS.get_name() != "iOS") # Handle attack via a button on mobile
 
 func _process(_delta: float) -> void:
 	if is_dead:
@@ -54,17 +57,21 @@ func _process(_delta: float) -> void:
 		body.flip_h = velocity.x < 0
 		attack_effect.flip_h = velocity.x < 0
 		attack_area.scale.x = -1 if velocity.x < 0 else 1
-	
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_dead:
 		return
-	if event.is_action_pressed("Attack") and !is_attacking:
-		is_attacking = true
+	if event.is_action_pressed("Attack"): 
 		trigger_attack()
 
 
 func trigger_attack():
+	if is_attacking:
+		return
+		
+	is_attacking = true
+	
 	body.stop()
 	body.play("Attack")
 	Globals.emit_signal("attack_signal", 0.4)
@@ -88,6 +95,9 @@ func _on_player_body_animation_finished() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var input_vector = Input.get_vector("left", "right", "up", "down")
+	if mobile_control_vector.length() > 0:
+		input_vector = mobile_control_vector
+		
 	velocity = input_vector * speed
 	move_and_slide()
 

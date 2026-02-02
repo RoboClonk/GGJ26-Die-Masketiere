@@ -16,20 +16,13 @@ shader_parameter/flash = 0.0
 [node name="PlayerDead" type="Node2D" unique_id=1193917726]
 script = ExtResource("1_3uemv")
 
-[node name="DeathScreen" parent="." unique_id=214914419 instance=ExtResource("2_jlvmp")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=733149587]
+
+[node name="DeathScreen" parent="CanvasLayer" unique_id=214914419 instance=ExtResource("2_jlvmp")]
 z_index = 10
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = -144.0
-offset_top = -81.0
-offset_right = -144.0
-offset_bottom = -81.0
-grow_horizontal = 1
-grow_vertical = 1
-scale = Vector2(0.25, 0.25)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1551943026]
+offset = Vector2(0, -16)
 zoom = Vector2(4, 4)
 
 [node name="PlayerLegs" type="AnimatedSprite2D" parent="." unique_id=1129114372]
