@@ -69,7 +69,7 @@ func _exit_tree() -> void:
 func create_local_timer(duration) -> Timer:
 	if !is_inside_tree():
 		return null
-	
+	debug_log("Create new timer %f" % [duration])
 	var timer = Timer.new()
 	add_child(timer)
 	timer.start(duration)
@@ -287,6 +287,7 @@ func default_attack(in_damage : int):
 		finish_attack()
 		return
 
+	attack_sprite.scale = Vector2.ONE * (attack_area_shape.shape.radius/128)
 	while(timer and timer.time_left > 0.1):
 		if(!get_target()):
 			finish_attack()
@@ -300,6 +301,10 @@ func default_attack(in_damage : int):
 			await get_tree().process_frame
 		else:
 			return
+	
+	if !timer: # When timer was freed early that means our attack was interrupted.
+		attack_sprite.modulate.a = 0.0
+		return
 	
 	attack_sprite.modulate.a = 0.0
 	can_move = true
@@ -400,10 +405,11 @@ func _reset_attack_state():
 func _clear_timers():
 	for timer in active_timers:
 		if timer:
-			timer.stop()
+			timer.stop() # Won't call the timeout signal
 			timer.queue_free()
 			
 	active_timers.clear()
+	debug_log("Timers cleared")
 
 
 func _on_detection_area_body_entered(_body: Node2D) -> void:
